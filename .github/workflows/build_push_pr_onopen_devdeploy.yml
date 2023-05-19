@@ -3,9 +3,7 @@ on:
   pull_request:
     types: [opened, reopened,edited,synchronize]
     branches:   
-      - 'maincomponent/producerapi_devbranch'
-      # - 'master'
-      # - 'release**'
+      - 'devbranch'
 
 
 jobs:
@@ -22,7 +20,7 @@ jobs:
     steps:
       - name: Merge the PR branch locally
         run: |
-          git clone "https://github.com/bcgov/jag-rsbc-ride"
+          git clone "https://github.com/bcgov/rsbc-ride-producer-api"
           git config --global user.email "ride_actions@gov.bc.ca"
           git config --global user.name "ride_actions"
           git config --global pull.rebase true
