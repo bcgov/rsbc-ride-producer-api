@@ -4,7 +4,17 @@
 
 [![Build & Deploy to TEST](https://github.com/bcgov/rsbc-ride-producer-api/actions/workflows/build_push_pr_onopen_testdeploy.yml/badge.svg)](https://github.com/bcgov/rsbc-ride-producer-api/actions/workflows/build_push_pr_onopen_testdeploy.yml)  
 
-[![Build & Deploy to PROD](https://github.com/bcgov/rsbc-ride-producer-api/actions/workflows/build_push_pr_onopen_proddeploy.yml/badge.svg)](https://github.com/bcgov/rsbc-ride-producer-api/actions/workflows/build_push_pr_onopen_proddeploy.yml)
+[![Build & Deploy to PROD](https://github.com/bcgov/rsbc-ride-producer-api/actions/workflows/build_push_pr_onopen_proddeploy.yml/badge.svg)](https://github.com/bcgov/rsbc-ride-producer-api/actions/workflows/build_push_pr_onopen_proddeploy.yml)  
+
+
+Dev  
+https://gitops-shared.apps.silver.devops.gov.bc.ca/api/badge?name=be5301-ride-producer-api-dev&revision=true  
+
+Test  
+https://gitops-shared.apps.silver.devops.gov.bc.ca/api/badge?name=be5301-ride-producer-api-test&revision=true  
+
+Prod  
+https://gitops-shared.apps.silver.devops.gov.bc.ca/api/badge?name=be5301-ride-producer-api-prod&revision=true
 
 # RIDE- Producer API Service
 
