@@ -4,6 +4,6 @@ SOURCE_REPOSITORY_REF: feature/producerapi-deployv1
 BUILD_CONFIG_SUFFIX: test
 COMPONENT: producer-api-build
 IMAGE_NAME: producer-api
-SOURCE_CONTEXT_DIR: rsbc-ride-producer-api
-SOURCE_REPOSITORY_URL: https://github.com/bcgov/jag-rsbc-ride
+SOURCE_CONTEXT_DIR: src
+SOURCE_REPOSITORY_URL: https://github.com/bcgov/rsbc-ride-producer-api
 BUILD_SECRET_NAME: producer-api-build-secret

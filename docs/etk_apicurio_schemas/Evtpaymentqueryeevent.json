@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-07/schema#","title":"Evtpaymentqueryeevent","type":"object","additionalProperties":false,"properties":{"ticket_number":{"oneOf":[{"type":"null","title":"Not included"},{"type":"string"}]}}}
