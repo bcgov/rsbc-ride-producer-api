@@ -13,7 +13,7 @@ jobs:
     environment: dev
     env:
       DOCKER_IMAGE_TAG: ${{ github.sha}}
-      DOCKER_CONTEXT: src
+      DOCKER_CONTEXT: rsbc-ride-producer-api/src
       DOCKER_IMAGE_NAME: rbe5-images/ride-producer-api
       DOCKER_FILE: src/Dockerfile.multistage
     steps:
