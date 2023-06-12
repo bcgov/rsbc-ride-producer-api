@@ -32,16 +32,33 @@ jobs:
       MONGO_CONN_STR: ${{ secrets.MONGO_CONN_STR }}
       AUTH_DB_NAME: ${{ secrets.AUTH_DB_NAME }}
       KAFKA_CONFLUENT_COMPAT_REGISTRY: ${{ secrets.KAFKA_CONFLUENT_COMPAT_REGISTRY }}
+      ISSUANCE_EVENT_TOPIC: ${{ secrets.ISSUANCE_EVENT_TOPIC }}
+      PAYMENT_EVENT_TOPIC: ${{ secrets.PAYMENT_EVENT_TOPIC }}
+      DISPUTE_EVENT_TOPIC: ${{ secrets.DISPUTE_EVENT_TOPIC }}
+      DISPUTE_UPDATE_EVENT_TOPIC: ${{ secrets.DISPUTE_UPDATE_EVENT_TOPIC }}
+      VIOLATIONS_EVENT_TOPIC: ${{ secrets.VIOLATIONS_EVENT_TOPIC }}
+      PAYQUERY_EVENT_TOPIC: ${{ secrets.PAYQUERY_EVENT_TOPIC }}
 
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3      
-      - name: Run Unit Tests
+        uses: actions/checkout@v3   
+      - name: Authenticate and set context for dev get cluster ca
+        uses: redhat-actions/oc-login@v1.2
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL_SILVER }}
+          openshift_token: ${{ secrets.OPENSHIFT_SA_PIPELINE_TOKEN_SILVER_DEV }}
+          namespace: "${{ secrets.OPENSHIFT_LICENSE_PLATE_SILVER }}-dev"
+      - name: Get Cluster ca secret for build
         run: |
-          cd src
-          chmod +x ./gradlew
-          ./gradlew test
+          oc get secret ${{ secrets.CLUSTER_CA_SECRET_NAME }} -o jsonpath='{.data.ca\.p12}' | base64 -d -i > ca.p12
+          pwd
+          ls -a
+      # - name: Run Unit Tests
+      #   run: |
+      #     cd src
+      #     chmod +x ./gradlew
+      #     ./gradlew test
 
   # test_build:
   #   name: Test the Build
