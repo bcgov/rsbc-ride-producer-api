@@ -13,7 +13,7 @@ jobs:
     environment: dev
     env:
       DOCKER_IMAGE_TAG: ${{ github.sha}}
-      DOCKER_CONTEXT: rsbc-ride-producer-api/src
+      DOCKER_CONTEXT_FOLDER: src
       DOCKER_IMAGE_NAME: rbe5-images/ride-producer-api
       DOCKER_FILE: src/Dockerfile.multistage
     steps:
@@ -45,7 +45,7 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v3
         with:
-          context: ${{ env.DOCKER_CONTEXT }}
+          context: ${{ env.DOCKER_CONTEXT_FOLDER }}
           file: ${{ env.DOCKER_FILE }}
           push: false
           tags: ${{ secrets.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
