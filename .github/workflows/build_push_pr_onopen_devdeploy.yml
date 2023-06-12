@@ -27,28 +27,28 @@ jobs:
           namespace: "${{ secrets.OPENSHIFT_LICENSE_PLATE_SILVER }}-dev"
       - name: Get Cluster ca secret for build
         run: |
-          oc get secret ${{ secrets.CLUSTER_CA_SECRET_NAME }} -o jsonpath='{.data.ca\.p12}' | base64 -d -i > src/ca.p12
+          oc get secret ${{ secrets.CLUSTER_CA_SECRET_NAME }} -o jsonpath='{.data.ca\.p12}' | base64 -d -i > src/certs/ca.p12
           pwd
           ls src
 
-      # - name: Setup
-      #   uses: docker/setup-buildx-action@v2
-      #   with:
-      #     install: true
+      - name: Setup
+        uses: docker/setup-buildx-action@v2
+        with:
+          install: true
 
-      # - name: Login
-      #   uses: docker/login-action@v2
-      #   with:
-      #     registry: ${{ secrets.DOCKER_REGISTRY }}
-      #     username: ${{ secrets.DOCKER_USERNAME }}
-      #     password: ${{ secrets.DOCKER_PASSWORD }}
-      # - name: Build
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: ${{ env.DOCKER_CONTEXT }}
-      #     file: ${{ env.DOCKER_FILE }}
-      #     push: false
-      #     tags: ${{ secrets.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
+      - name: Login
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build
+        uses: docker/build-push-action@v3
+        with:
+          context: ${{ env.DOCKER_CONTEXT }}
+          file: ${{ env.DOCKER_FILE }}
+          push: false
+          tags: ${{ secrets.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
 
   
         

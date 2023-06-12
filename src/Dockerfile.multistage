@@ -11,7 +11,7 @@ COPY --chown=quarkus:quarkus ./gradle.properties /code/
 RUN mkdir /deployments
 RUN mkdir /deployments/certs
 RUN mkdir /deployments/certs/server
-COPY --chown=quarkus:quarkus ./ca.p12 /deployments/certs/server
+COPY --chown=quarkus:quarkus ./certs/ca.p12 /deployments/certs/server
 RUN chmod +x /code/gradlew
 USER quarkus
 WORKDIR /code
