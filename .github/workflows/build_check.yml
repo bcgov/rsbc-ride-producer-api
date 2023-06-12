@@ -54,11 +54,11 @@ jobs:
           oc get secret ${{ secrets.CLUSTER_CA_SECRET_NAME }} -o jsonpath='{.data.ca\.p12}' | base64 -d -i > ca.p12
           pwd
           ls -a
-      # - name: Run Unit Tests
-      #   run: |
-      #     cd src
-      #     chmod +x ./gradlew
-      #     ./gradlew test
+      - name: Run Unit Tests
+        run: |
+          cd src
+          chmod +x ./gradlew
+          ./gradlew test
 
   # test_build:
   #   name: Test the Build
