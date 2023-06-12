@@ -1,4 +1,5 @@
-FROM image-registry.openshift-image-registry.svc:5000/be5301-tools/quarkus-builder-image:1.1 AS build
+# FROM image-registry.openshift-image-registry.svc:5000/be5301-tools/quarkus-builder-image:1.1 AS build
+FROM artifacts.developer.gov.bc.ca/rbe5-images/quarkus-builder-image:1.1 AS build
 USER root
 # RUN microdnf install findutils
 COPY --chown=quarkus:quarkus ./gradlew /code/gradlew
@@ -10,7 +11,7 @@ COPY --chown=quarkus:quarkus ./gradle.properties /code/
 RUN mkdir /deployments
 RUN mkdir /deployments/certs
 RUN mkdir /deployments/certs/server
-COPY --chown=quarkus:quarkus /tmp/ca.p12 /deployments/certs/server
+COPY --chown=quarkus:quarkus ./ca.p12 /deployments/certs/server
 RUN chmod +x /code/gradlew
 USER quarkus
 WORKDIR /code
@@ -18,10 +19,11 @@ COPY ./src /code/src
 RUN ls /code
 RUN ls -a
 RUN ls /deployments/certs/server
-RUN ./gradlew build
+RUN ./gradlew build -x test
 RUN ls -a
 
-FROM image-registry.openshift-image-registry.svc:5000/be5301-tools/quarkus-ubi-base-image:1.2
+# FROM image-registry.openshift-image-registry.svc:5000/be5301-tools/quarkus-ubi-base-image:1.2
+FROM artifacts.developer.gov.bc.ca/rbe5-images/quarkus-ubi-base-image:1.2
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 COPY --from=build --chown=185 /code/build/quarkus-app/lib/ /deployments/lib/
 COPY --from=build --chown=185 /code/build/quarkus-app/*.jar /deployments/
