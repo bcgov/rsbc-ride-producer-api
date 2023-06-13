@@ -92,6 +92,7 @@ RUN mkdir /deployments
 RUN mkdir /deployments/certs
 RUN mkdir /deployments/certs/server
 COPY --chown=quarkus:quarkus ./certs/ca.p12 /deployments/certs/server
+RUN ls /deployments/certs/server
 RUN chmod +x /code/gradlew
 USER quarkus
 WORKDIR /code
@@ -99,7 +100,8 @@ COPY ./src /code/src
 RUN ls /code
 RUN ls -a
 RUN ls /deployments/certs/server
-RUN ./gradlew build -x test
+# RUN ./gradlew build -x test
+RUN ./gradlew build
 RUN ls -a
 
 # FROM image-registry.openshift-image-registry.svc:5000/be5301-tools/quarkus-ubi-base-image:1.2
