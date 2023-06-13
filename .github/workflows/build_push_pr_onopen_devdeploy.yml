@@ -124,7 +124,7 @@ jobs:
               SSL_TRUSTTORE_PASS=${{ secrets.SSL_TRUSTTORE_PASS }}
               SSL_TRUSTTORE_TYPE=${{ secrets.SSL_TRUSTTORE_TYPE }}
               MONGO_CONN_STR=${{ secrets.MONGO_CONN_STR }}
-              AUTH_DB_NAME="testdb"
+              AUTH_DB_NAME="${{ secrets.AUTH_DB_NAME }}"
               KAFKA_CONFLUENT_COMPAT_REGISTRY=${{ secrets.KAFKA_CONFLUENT_COMPAT_REGISTRY }}
               ISSUANCE_EVENT_TOPIC=${{ secrets.ISSUANCE_EVENT_TOPIC }}
               PAYMENT_EVENT_TOPIC=${{ secrets.PAYMENT_EVENT_TOPIC }}
