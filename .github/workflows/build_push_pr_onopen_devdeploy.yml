@@ -118,9 +118,9 @@ jobs:
               KAFKA_SASL_CONFIG=""
               KAFKA_SASL_MECH=""
               KAFKA_SCHEMA_REGISTRY=""
-              KAFKA_SEC_PROTOCOL=""
+              KAFKA_SEC_PROTOCOL=${{ secrets.KAFKA_SEC_PROTOCOL }}
               KAFKA_SERVER=""
-              SSL_PROTOCOL=""
+              SSL_PROTOCOL=${{ secrets.SSL_PROTOCOL }}
               SSL_TRUSTSTORE=""
               SSL_TRUSTTORE_PASS=""
               SSL_TRUSTTORE_TYPE=""
