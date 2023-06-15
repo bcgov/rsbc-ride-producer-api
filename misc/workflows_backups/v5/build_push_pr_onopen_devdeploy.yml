@@ -109,32 +109,32 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
           build-args: |
-              APP_ACCEPTED_EVENT_TOPIC=""
-              PAYRECVD_EVENT_TOPIC=""
-              REVSCHED_EVENT_TOPIC=""
-              TEST_EVENT_TOPIC=""
-              DISCLOSURE_EVENT_TOPIC=""
-              EVSUBMITTED_EVENT_TOPIC=""
-              KAFKA_SASL_CONFIG=""
-              KAFKA_SASL_MECH=""
-              KAFKA_SCHEMA_REGISTRY=""
-              KAFKA_SEC_PROTOCOL=""
-              KAFKA_SERVER=""
-              SSL_PROTOCOL=""
-              SSL_TRUSTSTORE=""
-              SSL_TRUSTTORE_PASS=""
-              SSL_TRUSTTORE_TYPE=""
-              MONGO_CONN_STR=""
-              AUTH_DB_NAME=""
-              KAFKA_CONFLUENT_COMPAT_REGISTRY=""
-              ISSUANCE_EVENT_TOPIC=""
-              PAYMENT_EVENT_TOPIC=""
-              DISPUTE_EVENT_TOPIC=""
-              DISPUTE_UPDATE_EVENT_TOPIC=""
-              VIOLATIONS_EVENT_TOPIC=""
-              PAYQUERY_EVENT_TOPIC=""
-              RECON_SVC_HOST=""
-              CLUSTER_CA_SECRET_NAME=""
+              APP_ACCEPTED_EVENT_TOPIC=${{ secrets.APP_ACCEPTED_EVENT_TOPIC }}
+              PAYRECVD_EVENT_TOPIC=${{ secrets.PAYRECVD_EVENT_TOPIC }}
+              REVSCHED_EVENT_TOPIC=${{ secrets.REVSCHED_EVENT_TOPIC }}
+              TEST_EVENT_TOPIC=${{ secrets.TEST_EVENT_TOPIC }}
+              DISCLOSURE_EVENT_TOPIC=${{ secrets.DISCLOSURE_EVENT_TOPIC }}
+              EVSUBMITTED_EVENT_TOPIC=${{ secrets.EVSUBMITTED_EVENT_TOPIC }}
+              KAFKA_SASL_CONFIG=${{ secrets.KAFKA_SASL_CONFIG }}
+              KAFKA_SASL_MECH=${{ secrets.KAFKA_SASL_MECH }}
+              KAFKA_SCHEMA_REGISTRY=${{ secrets.KAFKA_SCHEMA_REGISTRY }}
+              KAFKA_SEC_PROTOCOL=${{ secrets.KAFKA_SEC_PROTOCOL }}
+              KAFKA_SERVER=${{ secrets.KAFKA_SERVER }}
+              SSL_PROTOCOL=${{ secrets.SSL_PROTOCOL }}
+              SSL_TRUSTSTORE=${{ secrets.SSL_TRUSTSTORE }}
+              SSL_TRUSTTORE_PASS=${{ secrets.SSL_TRUSTTORE_PASS }}
+              SSL_TRUSTTORE_TYPE=${{ secrets.SSL_TRUSTTORE_TYPE }}
+              MONGO_CONN_STR=${{ secrets.MONGO_CONN_STR }}
+              AUTH_DB_NAME="${{ secrets.AUTH_DB_NAME }}"
+              KAFKA_CONFLUENT_COMPAT_REGISTRY=${{ secrets.KAFKA_CONFLUENT_COMPAT_REGISTRY }}
+              ISSUANCE_EVENT_TOPIC=${{ secrets.ISSUANCE_EVENT_TOPIC }}
+              PAYMENT_EVENT_TOPIC=${{ secrets.PAYMENT_EVENT_TOPIC }}
+              DISPUTE_EVENT_TOPIC=${{ secrets.DISPUTE_EVENT_TOPIC }}
+              DISPUTE_UPDATE_EVENT_TOPIC=${{ secrets.DISPUTE_UPDATE_EVENT_TOPIC }}
+              VIOLATIONS_EVENT_TOPIC=${{ secrets.VIOLATIONS_EVENT_TOPIC }}
+              PAYQUERY_EVENT_TOPIC=${{ secrets.PAYQUERY_EVENT_TOPIC }}
+              RECON_SVC_HOST=${{ secrets.RECON_SVC_HOST }}
+              CLUSTER_CA_SECRET_NAME=${{ secrets.CLUSTER_CA_SECRET_NAME }}
    deploy_dev_argocd:
     name: Push to Gitops repo for Dev deployment via Argocd
     runs-on: ubuntu-latest
