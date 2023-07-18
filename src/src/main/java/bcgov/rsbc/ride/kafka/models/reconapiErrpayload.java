@@ -9,6 +9,8 @@ public class reconapiErrpayload {
     private String error_reason;
     private String error_type;
 
+    private Long eventid;
+
 
 
 
@@ -19,6 +21,13 @@ public class reconapiErrpayload {
     }
     public void setapipath(String apipath) {
         this.apipath = apipath;
+    }
+
+    public Long geteventid() {
+        return eventid;
+    }
+    public void seteventid(Long eventid) {
+        this.eventid = eventid;
     }
 
     public String getdatasource() {
