@@ -3,6 +3,8 @@ package bcgov.rsbc.ride.kafka.models;
 public class reconapiMainpayload {
 
     private String apipath;
+
+    private Long eventid;
     private String datasource;
     private String event_type;
 
@@ -14,6 +16,13 @@ public class reconapiMainpayload {
     }
     public void setapipath(String apipath) {
         this.apipath = apipath;
+    }
+
+    public Long geteventid() {
+        return eventid;
+    }
+    public void seteventid(Long eventid) {
+        this.eventid = eventid;
     }
 
     public String getdatasource() {

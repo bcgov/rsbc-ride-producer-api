@@ -94,18 +94,19 @@ public class eTkProducer {
             logger.info("[RIDE]: Publish etk_issuance [payload: {}] to kafka.", eventobj.toString());
 //            logger.info("{}",eventobj.getTypeofevent());
 //            evtissuanceeventpayloadrecord payloaddata=(evtissuanceeventpayloadrecord) eventobj.getEvtissuanceeventpayload().get(0);
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
             try {
                 String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
 //                logger.info(jsonPayload);
                 //DONE: Prep payload for recon api save master
                 ReconService reconObj=new ReconService();
-                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/issuance",jsonPayload,"etk","etk_issuance",reconapihost);
+                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/issuance",jsonPayload,"etk","etk_issuance",reconapihost,uid);
                 if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                     logger.error("[RIDE]: Exception occurred while saving to main staging table");
                 }
                 //Change sendAndAwait to wait at most 5 seconds.
-                Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterIssuanceEvent.send(Record.of(uid, eventobj)).await().atMost(Duration.ofSeconds(5));
 //                emitterIssuanceEvent.send(Record.of(uid, payloaddata)).await().atMost(Duration.ofSeconds(5));
@@ -116,7 +117,7 @@ public class eTkProducer {
                 try {
                     jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                     ReconService reconObj=new ReconService();
-                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/issuance",jsonPayload,"etk","etk_issuance",reconapihost,"producer_api",e.toString());
+                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/issuance",jsonPayload,"etk","etk_issuance",reconapihost,"producer_api",e.toString(),uid);
                     if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                         logger.error("[RIDE]: Exception occurred while saving to err staging table");
@@ -153,17 +154,18 @@ public class eTkProducer {
             logger.info("[RIDE]: Publish etk_disputeupdate [payload: {}] to kafka.", eventobj.toString());
 //            logger.info("{}",eventobj.getTypeofevent());
 //            evtissuanceeventpayloadrecord payloaddata=(evtissuanceeventpayloadrecord) eventobj.getEvtissuanceeventpayload().get(0);
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
             try {
                 String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                 //DONE: Prep payload for recon api save master
                 ReconService reconObj=new ReconService();
-                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/disputeupdate",jsonPayload,"etk","etk_disputeupdate",reconapihost);
+                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/disputeupdate",jsonPayload,"etk","etk_disputeupdate",reconapihost,uid);
                 if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                     logger.error("[RIDE]: Exception occurred while saving to main staging table");
                 }
                 //Change sendAndAwait to wait at most 5 seconds.
-                Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterDisputeUpdateEvent.send(Record.of(uid, eventobj)).await().atMost(Duration.ofSeconds(5));
 //                emitterIssuanceEvent.send(Record.of(uid, payloaddata)).await().atMost(Duration.ofSeconds(5));
@@ -173,7 +175,7 @@ public class eTkProducer {
                 try {
                     String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                     ReconService reconObj=new ReconService();
-                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/disputeupdate",jsonPayload,"etk","etk_disputeupdate",reconapihost,"producer_api",e.toString());
+                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/disputeupdate",jsonPayload,"etk","etk_disputeupdate",reconapihost,"producer_api",e.toString(),uid);
                     if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                         logger.error("[RIDE]: Exception occurred while saving to err staging table");
@@ -208,17 +210,18 @@ public class eTkProducer {
             logger.info("[RIDE]: Publish etk_dispute [payload: {}] to kafka.", eventobj.toString());
 //            logger.info("{}",eventobj.getTypeofevent());
 //            evtissuanceeventpayloadrecord payloaddata=(evtissuanceeventpayloadrecord) eventobj.getEvtissuanceeventpayload().get(0);
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
             try {
                 String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                 //DONE: Prep payload for recon api save master
                 ReconService reconObj=new ReconService();
-                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/dispute",jsonPayload,"etk","etk_dispute",reconapihost);
+                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/dispute",jsonPayload,"etk","etk_dispute",reconapihost,uid);
                 if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                     logger.error("[RIDE]: Exception occurred while saving to main staging table");
                 }
                 //Change sendAndAwait to wait at most 5 seconds.
-                Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterDisputeEvent.send(Record.of(uid, eventobj)).await().atMost(Duration.ofSeconds(5));
 //                emitterIssuanceEvent.send(Record.of(uid, payloaddata)).await().atMost(Duration.ofSeconds(5));
@@ -228,7 +231,7 @@ public class eTkProducer {
                 try {
                     String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                     ReconService reconObj=new ReconService();
-                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/dispute",jsonPayload,"etk","etk_dispute",reconapihost,"producer_api",e.toString());
+                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/dispute",jsonPayload,"etk","etk_dispute",reconapihost,"producer_api",e.toString(),uid);
                     if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                         logger.error("[RIDE]: Exception occurred while saving to err staging table");
@@ -264,17 +267,18 @@ public class eTkProducer {
             logger.info("[RIDE]: Publish etk_payment [payload: {}] to kafka.", eventobj.toString());
 //            logger.info("{}",eventobj.getTypeofevent());
 //            evtissuanceeventpayloadrecord payloaddata=(evtissuanceeventpayloadrecord) eventobj.getEvtissuanceeventpayload().get(0);
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
             try {
                 String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                 //DONE: Prep payload for recon api save master
                 ReconService reconObj=new ReconService();
-                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/payment",jsonPayload,"etk","etk_payment",reconapihost);
+                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/payment",jsonPayload,"etk","etk_payment",reconapihost,uid);
                 if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                     logger.error("[RIDE]: Exception occurred while saving to main staging table");
                 }
                 //Change sendAndAwait to wait at most 5 seconds.
-                Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterPaymentEvent.send(Record.of(uid, eventobj)).await().atMost(Duration.ofSeconds(5));
 //                emitterIssuanceEvent.send(Record.of(uid, payloaddata)).await().atMost(Duration.ofSeconds(5));
@@ -284,7 +288,7 @@ public class eTkProducer {
                 try {
                     String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                     ReconService reconObj=new ReconService();
-                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/payment",jsonPayload,"etk","etk_payment",reconapihost,"producer_api",e.toString());
+                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/payment",jsonPayload,"etk","etk_payment",reconapihost,"producer_api",e.toString(),uid);
                     if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                         logger.error("[RIDE]: Exception occurred while saving to err staging table");
@@ -319,17 +323,18 @@ public class eTkProducer {
             logger.info("[RIDE]: Publish etk_violations [payload: {}] to kafka.", eventobj.toString());
 //            logger.info("{}",eventobj.getTypeofevent());
 //            evtissuanceeventpayloadrecord payloaddata=(evtissuanceeventpayloadrecord) eventobj.getEvtissuanceeventpayload().get(0);
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
             try {
                 String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                 //DONE: Prep payload for recon api save master
                 ReconService reconObj=new ReconService();
-                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/violations",jsonPayload,"etk","etk_violations",reconapihost);
+                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/violations",jsonPayload,"etk","etk_violations",reconapihost,uid);
                 if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                     logger.error("[RIDE]: Exception occurred while saving to main staging table");
                 }
                 //Change sendAndAwait to wait at most 5 seconds.
-                Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterContraventionsEvent.send(Record.of(uid, eventobj)).await().atMost(Duration.ofSeconds(5));
 //                emitterIssuanceEvent.send(Record.of(uid, payloaddata)).await().atMost(Duration.ofSeconds(5));
@@ -339,7 +344,7 @@ public class eTkProducer {
                 try {
                     String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                     ReconService reconObj=new ReconService();
-                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/violations",jsonPayload,"etk","etk_violations",reconapihost,"producer_api",e.toString());
+                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/violations",jsonPayload,"etk","etk_violations",reconapihost,"producer_api",e.toString(),uid);
                     if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                         logger.error("[RIDE]: Exception occurred while saving to err staging table");
@@ -375,17 +380,18 @@ public class eTkProducer {
             logger.info("[RIDE]: Publish payment_query [payload: {}] to kafka.", eventobj.toString());
 //            logger.info("{}",eventobj.getTypeofevent());
 //            evtissuanceeventpayloadrecord payloaddata=(evtissuanceeventpayloadrecord) eventobj.getEvtissuanceeventpayload().get(0);
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
             try {
                 String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                 //DONE: Prep payload for recon api save master
                 ReconService reconObj=new ReconService();
-                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/payquery",jsonPayload,"etk","payment_query",reconapihost);
+                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/payquery",jsonPayload,"etk","payment_query",reconapihost,uid);
                 if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                     logger.error("[RIDE]: Exception occurred while saving to main staging table");
                 }
                 //Change sendAndAwait to wait at most 5 seconds.
-                Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterPayQueryEvent.send(Record.of(uid, eventobj)).await().atMost(Duration.ofSeconds(5));
 //                emitterIssuanceEvent.send(Record.of(uid, payloaddata)).await().atMost(Duration.ofSeconds(5));
@@ -395,7 +401,7 @@ public class eTkProducer {
                 try {
                     String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                     ReconService reconObj=new ReconService();
-                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/payquery",jsonPayload,"etk","payment_query",reconapihost,"producer_api",e.toString());
+                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/payquery",jsonPayload,"etk","payment_query",reconapihost,"producer_api",e.toString(),uid);
                     if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                         logger.error("[RIDE]: Exception occurred while saving to err staging table");
