@@ -17,7 +17,7 @@ public class ReconService {
 
     private OkHttpService okHttpService = new OkHttpService();
 
-    public boolean saveTomainStaging(String apiPath,String payloadDate,String dataSrc,String eventType,String reconapihost) {
+    public boolean saveTomainStaging(String apiPath,String payloadDate,String dataSrc,String eventType,String reconapihost,Long eventid) {
 
 
         try{
@@ -26,6 +26,7 @@ public class ReconService {
             apiObj.setpayloaddata(payloadDate);
             apiObj.setdatasource(dataSrc);
             apiObj.setEventType(eventType);
+            apiObj.seteventid(eventid);
             String jsonPayload = new ObjectMapper().writeValueAsString(apiObj);
             logger.info(jsonPayload);
             String reconapiurl=reconapihost+"/savemainstaging";
@@ -43,7 +44,7 @@ public class ReconService {
 
     }
 
-    public boolean saveToErrStaging(String apiPath,String payloadDate,String dataSrc,String eventType,String reconapihost,String errType,String errReason) {
+    public boolean saveToErrStaging(String apiPath,String payloadDate,String dataSrc,String eventType,String reconapihost,String errType,String errReason,Long eventid) {
 
 
         try{
@@ -54,6 +55,7 @@ public class ReconService {
             apiObj.setEventType(eventType);
             apiObj.setErrorType(errType);
             apiObj.setErrorReason(errReason);
+            apiObj.seteventid(eventid);
             String jsonPayload = new ObjectMapper().writeValueAsString(apiObj);
             logger.info(jsonPayload);
             String reconapiurl=reconapihost+"/saveerrorstaging";
