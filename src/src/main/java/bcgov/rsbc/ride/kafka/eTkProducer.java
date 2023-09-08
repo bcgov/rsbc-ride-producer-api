@@ -26,6 +26,7 @@ import bcgov.rsbc.ride.kafka.models.evtpaymenteevent;
 import bcgov.rsbc.ride.kafka.models.evtdisputeevent;
 import bcgov.rsbc.ride.kafka.models.evtcontraventionseevent;
 import bcgov.rsbc.ride.kafka.models.evtpaymentqueryeevent;
+import bcgov.rsbc.ride.kafka.models.geolocation;
 
 import bcgov.rsbc.ride.kafka.services.ReconService;
 
@@ -61,6 +62,10 @@ public class eTkProducer {
     @Inject
     @Channel("outgoing-payquery")
     MutinyEmitter<Record<Long, evtpaymentqueryeevent>> emitterPayQueryEvent;
+
+    @Inject
+    @Channel("outgoing-geolocation")
+    MutinyEmitter<Record<Long, geolocation>> geoLocationEvent;
 
     @ConfigProperty(name = "recon.api.host")
     String reconapihost;
@@ -402,6 +407,63 @@ public class eTkProducer {
                     String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
                     ReconService reconObj=new ReconService();
                     Boolean reconResp= reconObj.saveToErrStaging("/etkevents/payquery",jsonPayload,"etk","payment_query",reconapihost,"producer_api",e.toString(),uid);
+                    if(!reconResp){
+//                    throw new Exception("error in saving to main staging table");
+                        logger.error("[RIDE]: Exception occurred while saving to err staging table");
+                    }
+                } catch (JsonProcessingException ex) {
+                    logger.error("[RIDE]: Exception occurred while saving to err staging table");
+                }
+
+                return Response.serverError().entity("Failed sending  event to kafka").build();
+            }
+
+        }
+
+    }
+
+
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/geolocation")
+    public Response publishGeolocationEvent(@HeaderParam("ride-api-key") String apiKey, geolocation eventobj) {
+        if(apiKey== null){
+            return Response.serverError().status(401).entity("Auth Error").build();
+        }
+        PanacheQuery<apiKeys> queryKeys = apiKeys.find("apikeyval", apiKey);
+        List<apiKeys> foundKeys = queryKeys.list();
+        long foundKeyCount=queryKeys.count();
+
+        if(foundKeyCount==0){
+            return Response.serverError().status(401).entity("Auth Error").build();
+        }else{
+            logger.info("[RIDE]: Publish geolocation [payload: {}] to kafka.", eventobj.toString());
+//            logger.info("{}",eventobj.getTypeofevent());
+//            evtissuanceeventpayloadrecord payloaddata=(evtissuanceeventpayloadrecord) eventobj.getEvtissuanceeventpayload().get(0);
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+            try {
+                String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
+                //DONE: Prep payload for recon api save master
+                ReconService reconObj=new ReconService();
+                Boolean reconResp= reconObj.saveTomainStaging("/etkevents/geolocation",jsonPayload,"etk","geolocation",reconapihost,uid);
+                if(!reconResp){
+//                    throw new Exception("error in saving to main staging table");
+                    logger.error("[RIDE]: Exception occurred while saving to main staging table");
+                }
+                //Change sendAndAwait to wait at most 5 seconds.
+
+                logger.info("[RIDE]: Kafka event UID: {}", uid);
+                geoLocationEvent.send(Record.of(uid, eventobj)).await().atMost(Duration.ofSeconds(5));
+//                emitterIssuanceEvent.send(Record.of(uid, payloaddata)).await().atMost(Duration.ofSeconds(5));
+                return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
+            } catch (Exception e) {
+                logger.error("[RIDE]: Exception occurred while sending geolocation event, exception details: {}", e.toString() + "; " + e.getMessage());
+                try {
+                    String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
+                    ReconService reconObj=new ReconService();
+                    Boolean reconResp= reconObj.saveToErrStaging("/etkevents/geolocation",jsonPayload,"etk","geolocation",reconapihost,"producer_api",e.toString(),uid);
                     if(!reconResp){
 //                    throw new Exception("error in saving to main staging table");
                         logger.error("[RIDE]: Exception occurred while saving to err staging table");
