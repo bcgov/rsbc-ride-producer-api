@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "geolocation",
+  "type": "object",
+  "properties": {
+    "ticket_number": {
+      "type": "string"
+    },
+    "server_code": {
+      "type": "integer"
+    },
+    "x_value": {
+      "type": "string"
+    },
+    "y_value": {
+      "type": "string"
+    }
+  }
+}
