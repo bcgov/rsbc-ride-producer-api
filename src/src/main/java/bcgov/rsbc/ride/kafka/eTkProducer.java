@@ -441,11 +441,12 @@ public class eTkProducer {
         if(foundKeyCount==0){
             return Response.serverError().status(401).entity("Auth Error").build();
         }else{
-            logger.info("[RIDE]: Publish geolocation [payload: {}] to kafka.", eventobj.toString());
-            for (geolocation geoObj:eventobj) {                
+            
+            for (geolocation geoObj:eventobj) {     
+                logger.info("[RIDE]: Publish geolocation [payload: {}] to kafka.", geoObj);           
                 Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
                 try {
-                    String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
+                    String jsonPayload = new ObjectMapper().writeValueAsString(geoObj);
                     //DONE: Prep payload for recon api save master
                     ReconService reconObj=new ReconService();
                     Boolean reconResp= reconObj.saveTomainStaging("/etkevents/geolocation",jsonPayload,"etk","geolocation",reconapihost,uid);
@@ -454,13 +455,12 @@ public class eTkProducer {
                     }
                     logger.info("[RIDE]: Kafka event UID: {}", uid);
                     geoLocationEvent.send(Record.of(uid, geoObj)).await().atMost(Duration.ofSeconds(5));
-                    // return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
                     
                 } catch (Exception e) {
                     errFlg=true;
                     logger.error("[RIDE]: Exception occurred while sending geolocation event, exception details: {}", e.toString() + "; " + e.getMessage());
                     try {
-                        String jsonPayload = new ObjectMapper().writeValueAsString(eventobj);
+                        String jsonPayload = new ObjectMapper().writeValueAsString(geoObj);
                         ReconService reconObj=new ReconService();
                         Boolean reconResp= reconObj.saveToErrStaging("/etkevents/geolocation",jsonPayload,"etk","geolocation",reconapihost,"producer_api",e.toString(),uid);
                         if(!reconResp){
@@ -470,11 +470,10 @@ public class eTkProducer {
                         logger.error("[RIDE]: Exception occurred while saving to err staging table");
                     }
 
-                    // return Response.serverError().entity("Failed sending  event to kafka").build();
                 }
             }
 
-        if(errFlg){
+        if(Boolean.TRUE.equals(errFlg)){
             return Response.serverError().entity("One of the events Failed sending to kafka").build();
         }else{
             return Response.ok().entity("{\"status\":\"sent to kafka\"}").build();
