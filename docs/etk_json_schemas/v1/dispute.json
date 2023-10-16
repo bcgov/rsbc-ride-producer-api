@@ -20,6 +20,20 @@
     },
     "compressed_section": {
       "type": "string"
+    },
+    "event":{
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "integer"
+        },
+        "event_version": {
+          "type": "integer"
+        },
+        "event_date_time": {
+          "type": "integer"
+        }
+      }
     }
   }
 }

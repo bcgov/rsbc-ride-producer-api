@@ -1,6 +1,5 @@
 package bcgov.rsbc.ride.kafka.models;
 
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Generated;
@@ -10,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -48,9 +46,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "enforcement_officer_name",
         "sent_date",
         "enforcement_org_unit_cd",
-        "enforcement_org_unit_cd_txt"
+        "enforcement_org_unit_cd_txt",
+        "event"
 })
-
 
 public class evtissuanceeevent {
 
@@ -108,6 +106,8 @@ public class evtissuanceeevent {
     private String certificateOfServiceNumber;
     @JsonProperty("e_violation_form_number")
     private String eViolationFormNumber;
+    @JsonProperty("eviolationFormNumber")
+    private String eviolationFormNumber;
     @JsonProperty("enforcement_jurisdiction_name")
     private String enforcementJurisdictionName;
     @JsonProperty("mre_minor_version_text")
@@ -124,6 +124,8 @@ public class evtissuanceeevent {
     private String enforcementOrgUnitCd;
     @JsonProperty("enforcement_org_unit_cd_txt")
     private String enforcementOrgUnitCdTxt;
+    @JsonProperty("event")
+    private Event event;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -397,6 +399,16 @@ public class evtissuanceeevent {
         this.eViolationFormNumber = eViolationFormNumber;
     }
 
+    @JsonProperty("eviolationFormNumber")
+    public String getEviolationFormNumber() {
+        return eviolationFormNumber;
+    }
+
+    @JsonProperty("eviolationFormNumber")
+    public void setEviolationFormNumber(String eviolationFormNumber) {
+        this.eviolationFormNumber = eviolationFormNumber;
+    }
+
     @JsonProperty("enforcement_jurisdiction_name")
     public String getEnforcementJurisdictionName() {
         return enforcementJurisdictionName;
@@ -477,6 +489,16 @@ public class evtissuanceeevent {
         this.enforcementOrgUnitCdTxt = enforcementOrgUnitCdTxt;
     }
 
+    @JsonProperty("event")
+    public Event getEvent() {
+        return event;
+    }
+
+    @JsonProperty("event")
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -490,153 +512,162 @@ public class evtissuanceeevent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(evtissuanceeevent.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(evtissuanceeevent.class.getName()).append('@')
+                .append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("ticketNumber");
         sb.append('=');
-        sb.append(((this.ticketNumber == null)?"<null>":this.ticketNumber));
+        sb.append(((this.ticketNumber == null) ? "<null>" : this.ticketNumber));
         sb.append(',');
         sb.append("submitDate");
         sb.append('=');
-        sb.append(((this.submitDate == null)?"<null>":this.submitDate));
+        sb.append(((this.submitDate == null) ? "<null>" : this.submitDate));
         sb.append(',');
         sb.append("sentTime");
         sb.append('=');
-        sb.append(((this.sentTime == null)?"<null>":this.sentTime));
+        sb.append(((this.sentTime == null) ? "<null>" : this.sentTime));
         sb.append(',');
         sb.append("driversLicenceProvinceCode");
         sb.append('=');
-        sb.append(((this.driversLicenceProvinceCode == null)?"<null>":this.driversLicenceProvinceCode));
+        sb.append(((this.driversLicenceProvinceCode == null) ? "<null>" : this.driversLicenceProvinceCode));
         sb.append(',');
         sb.append("personGenderCode");
         sb.append('=');
-        sb.append(((this.personGenderCode == null)?"<null>":this.personGenderCode));
+        sb.append(((this.personGenderCode == null) ? "<null>" : this.personGenderCode));
         sb.append(',');
         sb.append("personResidenceCityName");
         sb.append('=');
-        sb.append(((this.personResidenceCityName == null)?"<null>":this.personResidenceCityName));
+        sb.append(((this.personResidenceCityName == null) ? "<null>" : this.personResidenceCityName));
         sb.append(',');
         sb.append("personResidenceProvinceCode");
         sb.append('=');
-        sb.append(((this.personResidenceProvinceCode == null)?"<null>":this.personResidenceProvinceCode));
+        sb.append(((this.personResidenceProvinceCode == null) ? "<null>" : this.personResidenceProvinceCode));
         sb.append(',');
         sb.append("youngPersonYn");
         sb.append('=');
-        sb.append(((this.youngPersonYn == null)?"<null>":this.youngPersonYn));
+        sb.append(((this.youngPersonYn == null) ? "<null>" : this.youngPersonYn));
         sb.append(',');
         sb.append("offenderTypeCode");
         sb.append('=');
-        sb.append(((this.offenderTypeCode == null)?"<null>":this.offenderTypeCode));
+        sb.append(((this.offenderTypeCode == null) ? "<null>" : this.offenderTypeCode));
         sb.append(',');
         sb.append("violationDate");
         sb.append('=');
-        sb.append(((this.violationDate == null)?"<null>":this.violationDate));
+        sb.append(((this.violationDate == null) ? "<null>" : this.violationDate));
         sb.append(',');
         sb.append("violationTime");
         sb.append('=');
-        sb.append(((this.violationTime == null)?"<null>":this.violationTime));
+        sb.append(((this.violationTime == null) ? "<null>" : this.violationTime));
         sb.append(',');
         sb.append("violationHighwayDesc");
         sb.append('=');
-        sb.append(((this.violationHighwayDesc == null)?"<null>":this.violationHighwayDesc));
+        sb.append(((this.violationHighwayDesc == null) ? "<null>" : this.violationHighwayDesc));
         sb.append(',');
         sb.append("violationCityCode");
         sb.append('=');
-        sb.append(((this.violationCityCode == null)?"<null>":this.violationCityCode));
+        sb.append(((this.violationCityCode == null) ? "<null>" : this.violationCityCode));
         sb.append(',');
         sb.append("violationCityName");
         sb.append('=');
-        sb.append(((this.violationCityName == null)?"<null>":this.violationCityName));
+        sb.append(((this.violationCityName == null) ? "<null>" : this.violationCityName));
         sb.append(',');
         sb.append("vehicleProvinceCode");
         sb.append('=');
-        sb.append(((this.vehicleProvinceCode == null)?"<null>":this.vehicleProvinceCode));
+        sb.append(((this.vehicleProvinceCode == null) ? "<null>" : this.vehicleProvinceCode));
         sb.append(',');
         sb.append("vehicleNsjPujCd");
         sb.append('=');
-        sb.append(((this.vehicleNsjPujCd == null)?"<null>":this.vehicleNsjPujCd));
+        sb.append(((this.vehicleNsjPujCd == null) ? "<null>" : this.vehicleNsjPujCd));
         sb.append(',');
         sb.append("vehicleMakeCode");
         sb.append('=');
-        sb.append(((this.vehicleMakeCode == null)?"<null>":this.vehicleMakeCode));
+        sb.append(((this.vehicleMakeCode == null) ? "<null>" : this.vehicleMakeCode));
         sb.append(',');
         sb.append("vehicleTypeCode");
         sb.append('=');
-        sb.append(((this.vehicleTypeCode == null)?"<null>":this.vehicleTypeCode));
+        sb.append(((this.vehicleTypeCode == null) ? "<null>" : this.vehicleTypeCode));
         sb.append(',');
         sb.append("vehicleYear");
         sb.append('=');
-        sb.append(((this.vehicleYear == null)?"<null>":this.vehicleYear));
+        sb.append(((this.vehicleYear == null) ? "<null>" : this.vehicleYear));
         sb.append(',');
         sb.append("accidentYn");
         sb.append('=');
-        sb.append(((this.accidentYn == null)?"<null>":this.accidentYn));
+        sb.append(((this.accidentYn == null) ? "<null>" : this.accidentYn));
         sb.append(',');
         sb.append("disputeAddressText");
         sb.append('=');
-        sb.append(((this.disputeAddressText == null)?"<null>":this.disputeAddressText));
+        sb.append(((this.disputeAddressText == null) ? "<null>" : this.disputeAddressText));
         sb.append(',');
         sb.append("courtLocationCode");
         sb.append('=');
-        sb.append(((this.courtLocationCode == null)?"<null>":this.courtLocationCode));
+        sb.append(((this.courtLocationCode == null) ? "<null>" : this.courtLocationCode));
         sb.append(',');
         sb.append("mreAgencyText");
         sb.append('=');
-        sb.append(((this.mreAgencyText == null)?"<null>":this.mreAgencyText));
+        sb.append(((this.mreAgencyText == null) ? "<null>" : this.mreAgencyText));
         sb.append(',');
         sb.append("enforcementJurisdictionCode");
         sb.append('=');
-        sb.append(((this.enforcementJurisdictionCode == null)?"<null>":this.enforcementJurisdictionCode));
+        sb.append(((this.enforcementJurisdictionCode == null) ? "<null>" : this.enforcementJurisdictionCode));
         sb.append(',');
         sb.append("certificateOfServiceDate");
         sb.append('=');
-        sb.append(((this.certificateOfServiceDate == null)?"<null>":this.certificateOfServiceDate));
+        sb.append(((this.certificateOfServiceDate == null) ? "<null>" : this.certificateOfServiceDate));
         sb.append(',');
         sb.append("certificateOfServiceNumber");
         sb.append('=');
-        sb.append(((this.certificateOfServiceNumber == null)?"<null>":this.certificateOfServiceNumber));
+        sb.append(((this.certificateOfServiceNumber == null) ? "<null>" : this.certificateOfServiceNumber));
         sb.append(',');
         sb.append("eViolationFormNumber");
         sb.append('=');
-        sb.append(((this.eViolationFormNumber == null)?"<null>":this.eViolationFormNumber));
+        sb.append(((this.eViolationFormNumber == null) ? "<null>" : this.eViolationFormNumber));
+        sb.append(',');
+        sb.append("eviolationFormNumber");
+        sb.append('=');
+        sb.append(((this.eviolationFormNumber == null) ? "<null>" : this.eviolationFormNumber));
         sb.append(',');
         sb.append("enforcementJurisdictionName");
         sb.append('=');
-        sb.append(((this.enforcementJurisdictionName == null)?"<null>":this.enforcementJurisdictionName));
+        sb.append(((this.enforcementJurisdictionName == null) ? "<null>" : this.enforcementJurisdictionName));
         sb.append(',');
         sb.append("mreMinorVersionText");
         sb.append('=');
-        sb.append(((this.mreMinorVersionText == null)?"<null>":this.mreMinorVersionText));
+        sb.append(((this.mreMinorVersionText == null) ? "<null>" : this.mreMinorVersionText));
         sb.append(',');
         sb.append("countQuantity");
         sb.append('=');
-        sb.append(((this.countQuantity == null)?"<null>":this.countQuantity));
+        sb.append(((this.countQuantity == null) ? "<null>" : this.countQuantity));
         sb.append(',');
         sb.append("enforcementOfficerNumber");
         sb.append('=');
-        sb.append(((this.enforcementOfficerNumber == null)?"<null>":this.enforcementOfficerNumber));
+        sb.append(((this.enforcementOfficerNumber == null) ? "<null>" : this.enforcementOfficerNumber));
         sb.append(',');
         sb.append("enforcementOfficerName");
         sb.append('=');
-        sb.append(((this.enforcementOfficerName == null)?"<null>":this.enforcementOfficerName));
+        sb.append(((this.enforcementOfficerName == null) ? "<null>" : this.enforcementOfficerName));
         sb.append(',');
         sb.append("sentDate");
         sb.append('=');
-        sb.append(((this.sentDate == null)?"<null>":this.sentDate));
+        sb.append(((this.sentDate == null) ? "<null>" : this.sentDate));
         sb.append(',');
         sb.append("enforcementOrgUnitCd");
         sb.append('=');
-        sb.append(((this.enforcementOrgUnitCd == null)?"<null>":this.enforcementOrgUnitCd));
+        sb.append(((this.enforcementOrgUnitCd == null) ? "<null>" : this.enforcementOrgUnitCd));
         sb.append(',');
         sb.append("enforcementOrgUnitCdTxt");
         sb.append('=');
-        sb.append(((this.enforcementOrgUnitCdTxt == null)?"<null>":this.enforcementOrgUnitCdTxt));
+        sb.append(((this.enforcementOrgUnitCdTxt == null) ? "<null>" : this.enforcementOrgUnitCdTxt));
+        sb.append(',');
+        sb.append("event");
+        sb.append('=');
+        sb.append(((this.event == null) ? "<null>" : this.event));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }

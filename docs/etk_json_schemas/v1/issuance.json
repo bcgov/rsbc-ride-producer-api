@@ -84,6 +84,9 @@
     "e_violation_form_number": {
       "type": "string"
     },
+    "eviolationFormNumber":{
+      "type": "string"
+    },
     "enforcement_jurisdiction_name": {
       "type": "string"
     },
@@ -107,6 +110,20 @@
     },
     "enforcement_org_unit_cd_txt": {
       "type": "string"
+    },
+    "event":{
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "integer"
+        },
+        "event_version": {
+          "type": "integer"
+        },
+        "event_date_time": {
+          "type": "integer"
+        }
+      }
     }
   }
 }
