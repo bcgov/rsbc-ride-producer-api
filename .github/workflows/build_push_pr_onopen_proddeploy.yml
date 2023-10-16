@@ -73,7 +73,7 @@ jobs:
     env:
       DOCKER_IMAGE_TAG: ${{ github.sha}}
       DOCKER_CONTEXT_FOLDER: src
-      DOCKER_IMAGE_NAME: rbe5-images/ride-producer-api
+      DOCKER_IMAGE_NAME: rbe5-images/ride-producer-api-prod
       DOCKER_FILE: src/Dockerfile.multistage
     steps:
       - name: Checkout
