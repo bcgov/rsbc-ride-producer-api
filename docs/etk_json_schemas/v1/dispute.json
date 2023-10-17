@@ -25,13 +25,13 @@
       "type": "object",
       "properties": {
         "event_id": {
-          "type": "integer"
+          "type": "string"
         },
         "event_version": {
-          "type": "integer"
+          "type": "string"
         },
         "event_date_time": {
-          "type": "integer"
+          "type": "string"
         }
       }
     }

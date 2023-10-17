@@ -20,41 +20,41 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Event {
 
     @JsonProperty("event_id")
-    private Integer eventId;
+    private String eventId;
     @JsonProperty("event_version")
-    private Integer eventVersion;
+    private String eventVersion;
     @JsonProperty("event_date_time")
-    private Integer eventDateTime;
+    private String eventDateTime;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("event_id")
-    public Integer getEventId() {
+    public String getEventId() {
         return eventId;
     }
 
     @JsonProperty("event_id")
-    public void setEventId(Integer eventId) {
+    public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 
     @JsonProperty("event_version")
-    public Integer getEventVersion() {
+    public String getEventVersion() {
         return eventVersion;
     }
 
     @JsonProperty("event_version")
-    public void setEventVersion(Integer eventVersion) {
+    public void setEventVersion(String eventVersion) {
         this.eventVersion = eventVersion;
     }
 
     @JsonProperty("event_date_time")
-    public Integer getEventDateTime() {
+    public String getEventDateTime() {
         return eventDateTime;
     }
 
     @JsonProperty("event_date_time")
-    public void setEventDateTime(Integer eventDateTime) {
+    public void setEventDateTime(String eventDateTime) {
         this.eventDateTime = eventDateTime;
     }
 
