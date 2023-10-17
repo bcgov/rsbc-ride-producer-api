@@ -3,6 +3,9 @@
   "title": "geolocation",
   "type": "object",
   "properties": {
+    "event_id": {
+      "type": "string"
+    },
     "ticket_number": {
       "type": "string"
     },

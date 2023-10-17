@@ -3,6 +3,9 @@
   "title": "evtpaymentqueryeevent",
   "type": "object",
   "properties": {
+    "event_id": {
+      "type": "string"
+    },
     "ticket_number": {
       "type": "string"
     },

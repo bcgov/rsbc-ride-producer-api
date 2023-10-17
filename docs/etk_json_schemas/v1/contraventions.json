@@ -3,6 +3,9 @@
   "title": "evtcontraventionseevent",
   "type": "object",
   "properties": {
+    "event_id": {
+      "type": "string"
+    },
     "ticket_number": {
       "type": "string"
     },
@@ -24,7 +27,7 @@
     "wording_number": {
       "type": "integer"
     },
-    "event":{
+    "event": {
       "type": "object",
       "properties": {
         "event_id": {

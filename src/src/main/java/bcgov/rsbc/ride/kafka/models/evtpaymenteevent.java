@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+        "event_id",
         "ticket_number",
         "count_number",
         "payment_card_type",
@@ -23,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class evtpaymenteevent {
 
+    @JsonProperty("event_id")
+    private String eventId;
     @JsonProperty("ticket_number")
     private String ticketNumber;
     @JsonProperty("count_number")
@@ -39,6 +42,16 @@ public class evtpaymenteevent {
     private Event event;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
+
+    @JsonProperty("event_id")
+    public String getEventId() {
+        return eventId;
+    }
+
+    @JsonProperty("event_id")
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
 
     @JsonProperty("ticket_number")
     public String getTicketNumber() {
@@ -125,6 +138,10 @@ public class evtpaymenteevent {
         StringBuilder sb = new StringBuilder();
         sb.append(evtpaymenteevent.class.getName()).append('@')
                 .append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("eventId");
+        sb.append('=');
+        sb.append(((this.eventId == null) ? "<null>" : this.eventId));
+        sb.append(',');
         sb.append("ticketNumber");
         sb.append('=');
         sb.append(((this.ticketNumber == null) ? "<null>" : this.ticketNumber));
