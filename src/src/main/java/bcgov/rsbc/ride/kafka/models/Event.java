@@ -12,50 +12,63 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "event_id",
-        "event_version",
-        "event_date_time"
+        "id",
+        "version",
+        "date_time",
+        "type"
 })
 @Generated("jsonschema2pojo")
 public class Event {
 
-    @JsonProperty("event_id")
-    private String eventId;
-    @JsonProperty("event_version")
-    private String eventVersion;
-    @JsonProperty("event_date_time")
-    private String eventDateTime;
+    @JsonProperty("id")
+    private String id;
+    @JsonProperty("version")
+    private String version;
+    @JsonProperty("date_time")
+    private String dateTime;
+    @JsonProperty("type")
+    private String type;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("event_id")
-    public String getEventId() {
-        return eventId;
+    @JsonProperty("id")
+    public String getId() {
+        return id;
     }
 
-    @JsonProperty("event_id")
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
+    @JsonProperty("id")
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @JsonProperty("event_version")
-    public String getEventVersion() {
-        return eventVersion;
+    @JsonProperty("version")
+    public String getVersion() {
+        return version;
     }
 
-    @JsonProperty("event_version")
-    public void setEventVersion(String eventVersion) {
-        this.eventVersion = eventVersion;
+    @JsonProperty("version")
+    public void setVersion(String version) {
+        this.version = version;
     }
 
-    @JsonProperty("event_date_time")
-    public String getEventDateTime() {
-        return eventDateTime;
+    @JsonProperty("date_time")
+    public String getDateTime() {
+        return dateTime;
     }
 
-    @JsonProperty("event_date_time")
-    public void setEventDateTime(String eventDateTime) {
-        this.eventDateTime = eventDateTime;
+    @JsonProperty("date_time")
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    @JsonProperty("type")
+    public String getType() {
+        return type;
+    }
+
+    @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
     }
 
     @JsonAnyGetter
@@ -73,17 +86,21 @@ public class Event {
         StringBuilder sb = new StringBuilder();
         sb.append(Event.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this)))
                 .append('[');
-        sb.append("eventId");
+        sb.append("id");
         sb.append('=');
-        sb.append(((this.eventId == null) ? "<null>" : this.eventId));
+        sb.append(((this.id == null) ? "<null>" : this.id));
         sb.append(',');
-        sb.append("eventVersion");
+        sb.append("version");
         sb.append('=');
-        sb.append(((this.eventVersion == null) ? "<null>" : this.eventVersion));
+        sb.append(((this.version == null) ? "<null>" : this.version));
         sb.append(',');
-        sb.append("eventDateTime");
+        sb.append("dateTime");
         sb.append('=');
-        sb.append(((this.eventDateTime == null) ? "<null>" : this.eventDateTime));
+        sb.append(((this.dateTime == null) ? "<null>" : this.dateTime));
+        sb.append(',');
+        sb.append("type");
+        sb.append('=');
+        sb.append(((this.type == null) ? "<null>" : this.type));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');

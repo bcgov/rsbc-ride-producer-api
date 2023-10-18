@@ -30,13 +30,16 @@
     "event": {
       "type": "object",
       "properties": {
-        "event_id": {
+        "id": {
           "type": "string"
         },
-        "event_version": {
+        "version": {
           "type": "string"
         },
-        "event_date_time": {
+        "date_time": {
+          "type": "string"
+        },
+        "type": {
           "type": "string"
         }
       }
