@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "ticket_number",
         "server_code",
         "x_value",
-        "y_value"
+        "y_value",
+        "event"
 })
 
 
@@ -30,6 +31,9 @@ public class geolocation {
     private String xValue;
     @JsonProperty("y_value")
     private String yValue;
+
+    @JsonProperty("event")
+    private Event event;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -73,6 +77,16 @@ public class geolocation {
         this.yValue = yValue;
     }
 
+    @JsonProperty("event")
+    public Event getEvent() {
+        return event;
+    }
+
+    @JsonProperty("event")
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
@@ -103,6 +117,10 @@ public class geolocation {
         sb.append("yValue");
         sb.append('=');
         sb.append(((this.yValue == null)?"<null>":this.yValue));
+        sb.append(',');
+        sb.append("event");
+        sb.append('=');
+        sb.append(((this.event == null) ? "<null>" : this.event));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
