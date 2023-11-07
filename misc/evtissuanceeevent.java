@@ -2,7 +2,6 @@ package bcgov.rsbc.ride.kafka.models;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.List;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -49,8 +48,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "sent_date",
         "enforcement_org_unit_cd",
         "enforcement_org_unit_cd_txt",
-        "event",
-        "counts"
+        "event"
 })
 
 public class evtissuanceeevent {
@@ -131,8 +129,6 @@ public class evtissuanceeevent {
     private String enforcementOrgUnitCdTxt;
     @JsonProperty("event")
     private Event event;
-    @JsonProperty("counts")
-    private List<Count> counts;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -516,16 +512,6 @@ public class evtissuanceeevent {
         this.event = event;
     }
 
-    @JsonProperty("counts")
-    public List<Count> getCounts() {
-        return counts;
-    }
-
-    @JsonProperty("counts")
-    public void setCounts(List<Count> counts) {
-        this.counts = counts;
-    }
-
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -692,10 +678,6 @@ public class evtissuanceeevent {
         sb.append("event");
         sb.append('=');
         sb.append(((this.event == null) ? "<null>" : this.event));
-        sb.append(',');
-        sb.append("counts");
-        sb.append('=');
-        sb.append(((this.counts == null) ? "<null>" : this.counts));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
