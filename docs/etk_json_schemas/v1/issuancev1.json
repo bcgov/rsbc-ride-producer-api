@@ -3,6 +3,9 @@
   "title": "evtissuanceeevent",
   "type": "object",
   "properties": {
+    "event_id": {
+      "type": "string"
+    },
     "ticket_number": {
       "type": "string"
     },
@@ -84,6 +87,9 @@
     "e_violation_form_number": {
       "type": "string"
     },
+    "eviolationFormNumber":{
+      "type": "string"
+    },
     "enforcement_jurisdiction_name": {
       "type": "string"
     },
@@ -107,6 +113,57 @@
     },
     "enforcement_org_unit_cd_txt": {
       "type": "string"
+    },
+    "event":{
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "date_time": {
+          "type": "string"
+        }
+      }
+    },
+    "counts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "name": "violationrecord",
+        "fields": [
+          {
+            "name": "ticket_number",
+            "type": "string"
+          },
+          {
+            "name": "count_number",
+            "type": "integer"
+          },
+          {
+            "name": "act_code",
+            "type": "string"
+          },
+          {
+            "name": "section_text",
+            "type": "string"
+          },
+          {
+            "name": "section_desc",
+            "type": "string"
+          },
+          {
+            "name": "fine_amount",
+            "type": "string"
+          },
+          {
+            "name": "wording_number",
+            "type": "integer"
+          }
+        ]
+      }
     }
   }
 }
