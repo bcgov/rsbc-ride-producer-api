@@ -10,18 +10,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+        "event_id",
         "ticket_number",
         "count_number",
         "dispute_action_date",
-        "dispute_action_code"
+        "dispute_action_code",
+        "event"
 })
-
 
 public class evtdisputeupdateevent {
 
+    @JsonProperty("event_id")
+    private String eventId;
     @JsonProperty("ticket_number")
     private String ticketNumber;
     @JsonProperty("count_number")
@@ -30,8 +32,20 @@ public class evtdisputeupdateevent {
     private String disputeActionDate;
     @JsonProperty("dispute_action_code")
     private String disputeActionCode;
+    @JsonProperty("event")
+    private Event event;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
+
+    @JsonProperty("event_id")
+    public String getEventId() {
+        return eventId;
+    }
+
+    @JsonProperty("event_id")
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
 
     @JsonProperty("ticket_number")
     public String getTicketNumber() {
@@ -73,6 +87,16 @@ public class evtdisputeupdateevent {
         this.disputeActionCode = disputeActionCode;
     }
 
+    @JsonProperty("event")
+    public Event getEvent() {
+        return event;
+    }
+
+    @JsonProperty("event")
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -86,29 +110,38 @@ public class evtdisputeupdateevent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(evtdisputeupdateevent.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(evtdisputeupdateevent.class.getName()).append('@')
+                .append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("eventId");
+        sb.append('=');
+        sb.append(((this.eventId == null) ? "<null>" : this.eventId));
+        sb.append(',');
         sb.append("ticketNumber");
         sb.append('=');
-        sb.append(((this.ticketNumber == null)?"<null>":this.ticketNumber));
+        sb.append(((this.ticketNumber == null) ? "<null>" : this.ticketNumber));
         sb.append(',');
         sb.append("countNumber");
         sb.append('=');
-        sb.append(((this.countNumber == null)?"<null>":this.countNumber));
+        sb.append(((this.countNumber == null) ? "<null>" : this.countNumber));
         sb.append(',');
         sb.append("disputeActionDate");
         sb.append('=');
-        sb.append(((this.disputeActionDate == null)?"<null>":this.disputeActionDate));
+        sb.append(((this.disputeActionDate == null) ? "<null>" : this.disputeActionDate));
         sb.append(',');
         sb.append("disputeActionCode");
         sb.append('=');
-        sb.append(((this.disputeActionCode == null)?"<null>":this.disputeActionCode));
+        sb.append(((this.disputeActionCode == null) ? "<null>" : this.disputeActionCode));
+        sb.append(',');
+        sb.append("event");
+        sb.append('=');
+        sb.append(((this.event == null) ? "<null>" : this.event));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }

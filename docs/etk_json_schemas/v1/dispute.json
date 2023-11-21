@@ -3,6 +3,9 @@
   "title": "evtdisputeevent",
   "type": "object",
   "properties": {
+    "event_id": {
+      "type": "string"
+    },
     "ticket_number": {
       "type": "string"
     },
@@ -20,6 +23,20 @@
     },
     "compressed_section": {
       "type": "string"
+    },
+    "event":{
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string"
+        },
+        "event_version": {
+          "type": "string"
+        },
+        "event_date_time": {
+          "type": "string"
+        }
+      }
     }
   }
 }
