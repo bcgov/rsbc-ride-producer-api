@@ -10,21 +10,23 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+        "event_id",
         "ticket_number",
         "count_number",
         "act_code",
         "section_text",
         "section_desc",
         "fine_amount",
-        "wording_number"
+        "wording_number",
+        "event"
 })
-
 
 public class evtcontraventionseevent {
 
+    @JsonProperty("event_id")
+    private String eventId;
     @JsonProperty("ticket_number")
     private String ticketNumber;
     @JsonProperty("count_number")
@@ -39,8 +41,20 @@ public class evtcontraventionseevent {
     private String fineAmount;
     @JsonProperty("wording_number")
     private Integer wordingNumber;
+    @JsonProperty("event")
+    private Event event;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
+
+    @JsonProperty("event_id")
+    public String getEventId() {
+        return eventId;
+    }
+
+    @JsonProperty("event_id")
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
 
     @JsonProperty("ticket_number")
     public String getTicketNumber() {
@@ -112,6 +126,16 @@ public class evtcontraventionseevent {
         this.wordingNumber = wordingNumber;
     }
 
+    @JsonProperty("event")
+    public Event getEvent() {
+        return event;
+    }
+
+    @JsonProperty("event")
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -125,41 +149,50 @@ public class evtcontraventionseevent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(evtcontraventionseevent.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(evtcontraventionseevent.class.getName()).append('@')
+                .append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("eventId");
+        sb.append('=');
+        sb.append(((this.eventId == null) ? "<null>" : this.eventId));
+        sb.append(',');
         sb.append("ticketNumber");
         sb.append('=');
-        sb.append(((this.ticketNumber == null)?"<null>":this.ticketNumber));
+        sb.append(((this.ticketNumber == null) ? "<null>" : this.ticketNumber));
         sb.append(',');
         sb.append("countNumber");
         sb.append('=');
-        sb.append(((this.countNumber == null)?"<null>":this.countNumber));
+        sb.append(((this.countNumber == null) ? "<null>" : this.countNumber));
         sb.append(',');
         sb.append("actCode");
         sb.append('=');
-        sb.append(((this.actCode == null)?"<null>":this.actCode));
+        sb.append(((this.actCode == null) ? "<null>" : this.actCode));
         sb.append(',');
         sb.append("sectionText");
         sb.append('=');
-        sb.append(((this.sectionText == null)?"<null>":this.sectionText));
+        sb.append(((this.sectionText == null) ? "<null>" : this.sectionText));
         sb.append(',');
         sb.append("sectionDesc");
         sb.append('=');
-        sb.append(((this.sectionDesc == null)?"<null>":this.sectionDesc));
+        sb.append(((this.sectionDesc == null) ? "<null>" : this.sectionDesc));
         sb.append(',');
         sb.append("fineAmount");
         sb.append('=');
-        sb.append(((this.fineAmount == null)?"<null>":this.fineAmount));
+        sb.append(((this.fineAmount == null) ? "<null>" : this.fineAmount));
         sb.append(',');
         sb.append("wordingNumber");
         sb.append('=');
-        sb.append(((this.wordingNumber == null)?"<null>":this.wordingNumber));
+        sb.append(((this.wordingNumber == null) ? "<null>" : this.wordingNumber));
+        sb.append(',');
+        sb.append("event");
+        sb.append('=');
+        sb.append(((this.event == null) ? "<null>" : this.event));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }

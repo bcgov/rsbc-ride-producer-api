@@ -39,6 +39,7 @@ jobs:
       VIOLATIONS_EVENT_TOPIC: ${{ secrets.VIOLATIONS_EVENT_TOPIC }}
       PAYQUERY_EVENT_TOPIC: ${{ secrets.PAYQUERY_EVENT_TOPIC }}
       RECON_SVC_HOST: ${{ secrets.RECON_SVC_HOST }}
+      ETK_GEOLOCATION_TOPIC: ${{ secrets.ETK_GEOLOCATION_TOPIC }}
 
 
     steps:
@@ -101,6 +102,7 @@ jobs:
       VIOLATIONS_EVENT_TOPIC: ${{ secrets.VIOLATIONS_EVENT_TOPIC }}
       PAYQUERY_EVENT_TOPIC: ${{ secrets.PAYQUERY_EVENT_TOPIC }}
       RECON_SVC_HOST: ${{ secrets.RECON_SVC_HOST }}
+      ETK_GEOLOCATION_TOPIC: ${{ secrets.ETK_GEOLOCATION_TOPIC }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3      

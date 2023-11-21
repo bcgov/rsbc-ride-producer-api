@@ -39,6 +39,8 @@ jobs:
       PAYQUERY_EVENT_TOPIC: ${{ secrets.PAYQUERY_EVENT_TOPIC }}
       RECON_SVC_HOST: ${{ secrets.RECON_SVC_HOST }}
       CLUSTER_CA_SECRET_NAME: ${{ secrets.CLUSTER_CA_SECRET_NAME }}
+      ETK_GEOLOCATION_TOPIC: ${{ secrets.ETK_GEOLOCATION_TOPIC }}
+
 
 
     steps:
@@ -135,6 +137,7 @@ jobs:
               PAYQUERY_EVENT_TOPIC=""
               RECON_SVC_HOST=""
               CLUSTER_CA_SECRET_NAME=""
+              ETK_GEOLOCATION_TOPIC=""
    deploy_dev_argocd:
     name: Push to Gitops repo for Dev deployment via Argocd
     runs-on: ubuntu-latest
