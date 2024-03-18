@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "evtdisputeupdateevent",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "ticket_number": {
+      "type": "string"
+    },
+    "count_number": {
+      "type": "integer"
+    },
+    "dispute_action_date": {
+      "type": "string"
+    },
+    "dispute_action_code": {
+      "type": "string"
+    },
+    "event":{
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string"
+        },
+        "event_version": {
+          "type": "string"
+        },
+        "event_date_time": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -49,6 +49,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "sent_date",
         "enforcement_org_unit_cd",
         "enforcement_org_unit_cd_txt",
+        "ticket_status",
+        "ticket_status_trans",
         "event",
         "counts"
 })
@@ -129,6 +131,14 @@ public class evtissuanceeevent {
     private String enforcementOrgUnitCd;
     @JsonProperty("enforcement_org_unit_cd_txt")
     private String enforcementOrgUnitCdTxt;
+
+    @JsonProperty("ticket_status")
+    private String ticketStatus;
+
+    @JsonProperty("ticket_status_trans")
+    private String ticketStatusTrans;
+
+
     @JsonProperty("event")
     private Event event;
     @JsonProperty("counts")
@@ -144,6 +154,27 @@ public class evtissuanceeevent {
     @JsonProperty("event_id")
     public void setEventId(String eventId) {
         this.eventId = eventId;
+    }
+
+
+    @JsonProperty("ticket_status")
+    public String getTicketStatus() {
+        return ticketStatus;
+    }
+
+    @JsonProperty("ticket_status")
+    public void setTicketStatus(String ticketStatus) {
+        this.ticketStatus = ticketStatus;
+    }
+
+    @JsonProperty("ticket_status_trans")
+    public String getTicketStatusTrans() {
+        return ticketStatusTrans;
+    }
+
+    @JsonProperty("ticket_status_trans")
+    public void setTicketStatusTrans(String ticketStatusTrans) {
+        this.ticketStatusTrans = ticketStatusTrans;
     }
 
     @JsonProperty("ticket_number")
