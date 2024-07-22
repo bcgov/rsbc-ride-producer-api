@@ -1,5 +1,4 @@
-# FROM image-registry.openshift-image-registry.svc:5000/be5301-tools/quarkus-builder-image:1.1 AS build
-FROM artifacts.developer.gov.bc.ca/rbe5-images/quarkus-builder-image:1.1 AS build
+FROM artifacts.developer.gov.bc.ca/rbe5-images/ubi-quarkus-graalvmce-builder-image:jdk-17 AS build
 
 ARG APP_ACCEPTED_EVENT_TOPIC
 ENV APP_ACCEPTED_EVENT_TOPIC=$APP_ACCEPTED_EVENT_TOPIC
