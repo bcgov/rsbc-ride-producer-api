@@ -1,0 +1,81 @@
+{
+  "name": "twelveHoursEvent",
+  "type": "record",
+  "namespace": "bcgov.rsbc.ride.kafka.models",
+  "fields": [
+    {
+      "name": "typeofevent",
+      "doc": "",
+      "type": "string"
+    },
+    {
+      "name": "twelveHoursPayload",
+      "doc": "",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "twelveHoursPayloadRecord",
+          "fields": [
+            {
+              "name": "eventID",
+              "doc": "",
+              "type": "float"
+            },
+            {
+              "name": "eventDtm",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "eventType",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "twelveHrNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "driverCityTown",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "driverProv",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "driverJurisdiction",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "addressOfOffence",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "offenceCity",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "officerBadgeNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "enforcementAgencyName",
+              "doc": "",
+              "type": "string"
+            }
+          ]
+        }
+
+      }
+    }
+  ]
+}

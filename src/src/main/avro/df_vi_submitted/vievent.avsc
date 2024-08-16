@@ -1,0 +1,161 @@
+{
+  "name": "viEvent",
+  "type": "record",
+  "namespace": "bcgov.rsbc.ride.kafka.models",
+  "fields": [
+    {
+      "name": "typeofevent",
+      "doc": "",
+      "type": "string"
+    },
+    {
+      "name": "viPayload",
+      "doc": "",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "viPayloadRecord",
+          "fields": [
+            {
+              "name": "eventID",
+              "doc": "",
+              "type": "float"
+            },
+            {
+              "name": "eventVersion",
+              "doc": "",
+              "type": "float"
+            },
+            {
+              "name": "eventDtm",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "eventType",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "viNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "driverCityTown",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "driverProv",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "driverJurisdiction",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "addressOfOffence",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "offenceCity",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "gender",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "isIRP",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "IRPDuration",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "excessiveSpeed",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "prohibited",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "suspended",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "streetRacing",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "stuntRacing",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "motorcycleSeating",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "motorcycleRestrictions",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "unlicensed",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "speedLimit",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "vehicleSpeed",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "speedEstimationTechnique",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "speedConfirmationTechnique",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "officerBadgeNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "enforcementAgencyName",
+              "doc": "",
+              "type": "string"
+            }
+          ]
+        }
+
+      }
+    }
+  ]
+}
