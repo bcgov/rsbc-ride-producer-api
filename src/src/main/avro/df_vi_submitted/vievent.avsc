@@ -18,11 +18,6 @@
           "name": "viPayloadRecord",
           "fields": [
             {
-              "name": "eventID",
-              "doc": "",
-              "type": "float"
-            },
-            {
               "name": "eventVersion",
               "doc": "",
               "type": "float"
@@ -35,7 +30,7 @@
             {
               "name": "eventType",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
             },
             {
               "name": "viNumber",
@@ -43,19 +38,34 @@
               "type": "string"
             },
             {
-              "name": "driverCityTown",
+              "name": "driverLicenceNumber",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
             },
             {
-              "name": "driverProv",
+              "name": "driverCityTown",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverProvince",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverPostalCode",
+              "doc": "",
+              "type": ["null","string"]
             },
             {
               "name": "driverJurisdiction",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
+            },
+            {
+              "name": "gender",
+              "doc": "",
+              "type": ["null","string"]
             },
             {
               "name": "addressOfOffence",
@@ -68,9 +78,24 @@
               "type": "string"
             },
             {
-              "name": "gender",
+              "name": "typeOfProhibition",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "impoundLotOperator",
               "doc": "",
               "type": "string"
+            },
+            {
+              "name": "dateOfImpound",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "unlicencedProhibitionNumber",
+              "doc": "",
+              "type": ["null","string"]
             },
             {
               "name": "isIRP",
@@ -78,9 +103,14 @@
               "type": "boolean"
             },
             {
-              "name": "IRPDuration",
+              "name": "irpNumber",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
+            },
+            {
+              "name": "irpDuration",
+              "doc": "",
+              "type": ["null","string"]
             },
             {
               "name": "excessiveSpeed",
@@ -123,24 +153,29 @@
               "type": "boolean"
             },
             {
+              "name": "driverIsRegistOwner",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
               "name": "speedLimit",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
             },
             {
               "name": "vehicleSpeed",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
             },
             {
               "name": "speedEstimationTechnique",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
             },
             {
               "name": "speedConfirmationTechnique",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
             },
             {
               "name": "officerBadgeNumber",
@@ -148,9 +183,14 @@
               "type": "string"
             },
             {
+              "name": "vjurCde",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
               "name": "enforcementAgencyName",
               "doc": "",
-              "type": "string"
+              "type": ["null","string"]
             }
           ]
         }
