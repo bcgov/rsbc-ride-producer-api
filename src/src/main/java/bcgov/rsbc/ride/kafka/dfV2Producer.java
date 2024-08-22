@@ -21,11 +21,11 @@ import java.time.ZoneOffset;
 
 @Path("/dfV2events")
 public class dfV2Producer {
-    private final static String DF_V_2 = "dfV2";
+    private final static String DF_V_2 = "df";
     private final static String DF_V_2_EVENTS = "/dfV2events";
-    private final static String TWELVE_HR_EVENT = "12hr_event";
-    private final static String TWENTY_FOUR_HR_EVENT = "24hr_event";
-    private final static String VI_EVENT = "vi_event";
+    private final static String TWELVE_HR_EVENT = "12hr_submitted";
+    private final static String TWENTY_FOUR_HR_EVENT = "24hr_submitted";
+    private final static String VI_EVENT = "vi_submitted";
     private static final String PRODUCER_API = "producer_api";
     public static final String TWENTY_FOUR_HR_PATH = "/24hrsubmitted";
     public static final String TWELVE_HR_PATH = "/12hrsubmitted";
@@ -122,7 +122,7 @@ public class dfV2Producer {
             Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
 
             try {
-                saveEventToMainStaging(viEventObj, uid, payloadData.getEventType(), apiPath);
+                saveEventToMainStaging(viEventObj, uid, VI_EVENT, apiPath);
 
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterViEvent.send(Record.of(uid, payloadData)).await().atMost(Duration.ofSeconds(5));

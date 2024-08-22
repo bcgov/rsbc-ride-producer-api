@@ -33,7 +33,7 @@
               "type": ["null","string"]
             },
             {
-              "name": "twentyFourHourNumber",
+              "name": "twentyFourHrNo",
               "doc": "",
               "type": "string"
             },
@@ -83,9 +83,14 @@
               "type": ["null","string"]
             },
             {
-              "name": "unlicencedProhibitionNumber",
+              "name": "vehicleImpounded",
               "doc": "",
-              "type": ["null","string"]
+              "type": "boolean"
+            },
+            {
+              "name": "reasonableTestAlcohol",
+              "doc": "",
+              "type": "string"
             },
             {
               "name": "officerBadgeNumber",
