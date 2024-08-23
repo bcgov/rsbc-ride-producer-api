@@ -83,11 +83,6 @@
               "type": ["null","string"]
             },
             {
-              "name": "unlicencedProhibitionNumber",
-              "doc": "",
-              "type": ["null","string"]
-            },
-            {
               "name": "officerBadgeNumber",
               "doc": "",
               "type": "string"
