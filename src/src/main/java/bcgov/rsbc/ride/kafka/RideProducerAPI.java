@@ -1,13 +1,13 @@
 package bcgov.rsbc.ride.kafka;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
 
 //import org.eclipse.microprofile.config.ConfigProvider;
 import io.quarkus.mongodb.panache.PanacheQuery;
