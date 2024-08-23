@@ -1,5 +1,4 @@
-# FROM image-registry.openshift-image-registry.svc:5000/be5301-tools/quarkus-builder-image:1.1 AS build
-FROM artifacts.developer.gov.bc.ca/rbe5-images/quarkus-builder-image:1.1 AS build
+FROM artifacts.developer.gov.bc.ca/rbe5-images/ubi-quarkus-graalvmce-builder-image:jdk-17 AS build
 
 ARG APP_ACCEPTED_EVENT_TOPIC
 ENV APP_ACCEPTED_EVENT_TOPIC=$APP_ACCEPTED_EVENT_TOPIC
@@ -106,8 +105,7 @@ RUN ./gradlew build -x test
 # RUN ./gradlew build
 RUN ls -a
 
-# FROM image-registry.openshift-image-registry.svc:5000/be5301-tools/quarkus-ubi-base-image:1.2
-FROM artifacts.developer.gov.bc.ca/rbe5-images/quarkus-ubi-base-image:1.2
+FROM artifacts.developer.gov.bc.ca/rbe5-images/ubi8-openjdk-17-runtime:1.20
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 COPY --from=build --chown=185 /code/build/quarkus-app/lib/ /deployments/lib/
 COPY --from=build --chown=185 /code/build/quarkus-app/*.jar /deployments/

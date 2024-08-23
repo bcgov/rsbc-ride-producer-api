@@ -44,7 +44,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3   
+        uses: actions/checkout@v3
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: "temurin"
       - name: Authenticate and set context for dev get cluster ca
         uses: redhat-actions/oc-login@v1.2
         with:
