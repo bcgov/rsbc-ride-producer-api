@@ -63,9 +63,84 @@
               "type": ["null","string"]
             },
             {
-              "name": "gender",
+              "name": "driverDateOfBirth",
               "doc": "",
               "type": ["null","string"]
+            },
+            {
+              "name": "vehicleJurisdiction",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehiclePlateNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleRegistrationNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleYear",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleMakeModel",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleStyle",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "ownedByCorp",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "corporationName",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "dateOfDriving",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "timeOfDriving",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "agencyFileNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "dateReleased",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "timeReleased",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleTypeDesc",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "officerDisplayName",
+              "doc": "",
+              "type": "string"
             },
             {
               "name": "addressOfOffence",
