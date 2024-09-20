@@ -1,0 +1,181 @@
+{
+  "name": "twelveHoursEvent",
+  "type": "record",
+  "namespace": "bcgov.rsbc.ride.kafka.models",
+  "fields": [
+    {
+      "name": "typeofevent",
+      "doc": "",
+      "type": "string"
+    },
+    {
+      "name": "twelveHoursPayload",
+      "doc": "",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "twelveHoursPayloadRecord",
+          "fields": [
+            {
+              "name": "eventVersion",
+              "doc": "",
+              "type": "float"
+            },
+            {
+              "name": "eventDtm",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "eventType",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "twelveHourNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "driverLicenceNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverCityTown",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverProvince",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverPostalCode",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverJurisdiction",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverDateOfBirth",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleJurisdiction",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehiclePlateNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleRegistrationNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleYear",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleMakeModel",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleStyle",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "ownedByCorp",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "corporationName",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "dateOfDriving",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "timeOfDriving",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "agencyFileNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "dateReleased",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "timeReleased",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleTypeDesc",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "officerDisplayName",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "addressOfOffence",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "offenceCity",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "typeOfProhibition",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "officerBadgeNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "vjurCde",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "enforcementAgencyName",
+              "doc": "",
+              "type": ["null","string"]
+            }
+          ]
+        }
+
+      }
+    }
+  ]
+}
