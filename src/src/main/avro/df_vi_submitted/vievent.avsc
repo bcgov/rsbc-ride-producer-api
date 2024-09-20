@@ -1,0 +1,286 @@
+{
+  "name": "viEvent",
+  "type": "record",
+  "namespace": "bcgov.rsbc.ride.kafka.models",
+  "fields": [
+    {
+      "name": "typeofevent",
+      "doc": "",
+      "type": "string"
+    },
+    {
+      "name": "viPayload",
+      "doc": "",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "viPayloadRecord",
+          "fields": [
+            {
+              "name": "eventVersion",
+              "doc": "",
+              "type": "float"
+            },
+            {
+              "name": "eventDtm",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "eventType",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "viNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "driverLicenceNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverCityTown",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverProvince",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverPostalCode",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverJurisdiction",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverGender",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverDateOfBirth",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "driverLicenceClass",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "outOfProvinceDriverLicense",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleJurisdiction",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehiclePlateNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleRegistrationNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleYear",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleMakeModel",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleStyle",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "ownedByCorp",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "corporationName",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "dateOfDriving",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "timeOfDriving",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "agencyFileNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "dateReleased",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "timeReleased",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleTypeDesc",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "officerDisplayName",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "addressOfOffence",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "offenceCity",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "impoundLotOperator",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "dateOfImpound",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "unlicencedProhibitionNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "isIRP",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "irpNumber",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "irpDuration",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "excessiveSpeed",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "prohibited",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "suspended",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "streetRacing",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "stuntRacing",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "motorcycleSeating",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "motorcycleRestrictions",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "unlicensed",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "driverIsRegistOwner",
+              "doc": "",
+              "type": "boolean"
+            },
+            {
+              "name": "speedLimit",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "vehicleSpeed",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "speedEstimationTechnique",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "speedConfirmationTechnique",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "officerBadgeNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "vjurCde",
+              "doc": "",
+              "type": ["null","string"]
+            },
+            {
+              "name": "enforcementAgencyName",
+              "doc": "",
+              "type": ["null","string"]
+            }
+          ]
+        }
+
+      }
+    }
+  ]
+}
