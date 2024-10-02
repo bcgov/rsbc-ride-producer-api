@@ -276,6 +276,16 @@
               "name": "enforcementAgencyName",
               "doc": "",
               "type": ["null","string"]
+            },
+            {
+              "name": "latitude",
+              "doc": "",
+              "type": ["null","float"]
+            },
+            {
+              "name": "longitude",
+              "doc": "",
+              "type": ["null","float"]
             }
           ]
         }
