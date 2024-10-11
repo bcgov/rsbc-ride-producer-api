@@ -111,7 +111,7 @@ public class dfV2Producer {
 
         geolocationRecord geoLocation = new geolocationRecord();
         geoLocation.setBusinessProgram("DF");
-        geoLocation.setBusinessType("12hr");
+        geoLocation.setBusinessType(payloadData.getTypeofevent());
         geoLocation.setBusinessId(String.valueOf(payloadData.getTwelveHoursPayload().getTwelveHourNumber()));
         locationRequestPayload locationRequestPayload = payloadData.getLocationRequestPayload();
         geoLocation.setLat(String.valueOf(locationRequestPayload.getLatitude()));
@@ -129,54 +129,108 @@ public class dfV2Producer {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(TWENTY_FOUR_HR_PATH)
-    public Response publishTwentyFourHourEvent(@HeaderParam("ride-api-key") String apiKey, twentyFourHoursEvent twentyFourHoursEvent) {
+    public Response publishTwentyFourHourEvent(@HeaderParam("ride-api-key") String apiKey, twentyFourHoursRequestPayload twentyFourHoursPayload) {
         if(checkAuthKey(apiKey)){
             String apiPath = DF_V_2_EVENTS + TWENTY_FOUR_HR_PATH;
-            logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", twentyFourHoursEvent.getTwentyFourHoursPayload());
-            logger.info("{}",twentyFourHoursEvent.getTypeofevent());
+            logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", twentyFourHoursPayload);
+            logger.info("{}",twentyFourHoursPayload.getTypeofevent());
 
-            twentyFourHoursPayloadRecord payloadData = twentyFourHoursEvent.getTwentyFourHoursPayload().get(0);
             Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
-
             try {
-                saveEventToMainStaging(twentyFourHoursEvent, uid, TWENTY_FOUR_HR_EVENT, apiPath);
+                twentyFourHoursPayloadRecord payloadData = twentyFourHoursPayload.getTwentyFourHoursPayload();
+                twentyFourHoursEvent twentyFourHoursEvent = new twentyFourHoursEvent(
+                        twentyFourHoursPayload.getTypeofevent(),
+                        Collections.singletonList(payloadData)
+                );
+                geolocationRecord geoLocation = getTwentyFourHourGeolocationRecord(twentyFourHoursPayload);
 
+                saveEventToMainStaging(twentyFourHoursEvent, uid, TWENTY_FOUR_HR_EVENT, apiPath);
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterTwentyFourHourEvent.send(Record.of(uid, payloadData)).await().atMost(Duration.ofSeconds(5));
 
+                sendGeolocationEvent(geoLocation, uid, apiPath);
+
                 return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
             } catch (Exception e) {
-                return handleException(e, apiPath, twentyFourHoursEvent.toString(), TWENTY_FOUR_HR_EVENT, uid);
+                return handleException(e, apiPath, twentyFourHoursPayload.toString(), TWENTY_FOUR_HR_EVENT, uid);
             }
         }
         return Response.serverError().status(401).entity("Auth Error").build();
+    }
+
+    private static geolocationRecord getTwentyFourHourGeolocationRecord(twentyFourHoursRequestPayload twentyFourHoursPayload) {
+        if (twentyFourHoursPayload == null || twentyFourHoursPayload.getTwentyFourHoursPayload() == null || twentyFourHoursPayload.getLocationRequestPayload() == null) {
+            return null;
+        }
+
+        geolocationRecord geoLocation = new geolocationRecord();
+        geoLocation.setBusinessProgram("DF");
+        geoLocation.setBusinessType(twentyFourHoursPayload.getTypeofevent());
+        geoLocation.setBusinessId(String.valueOf(twentyFourHoursPayload.getTwentyFourHoursPayload().getTwentyFourHrNo()));
+        locationRequestPayload locationRequestPayload = twentyFourHoursPayload.getLocationRequestPayload();
+        geoLocation.setLat(String.valueOf(locationRequestPayload.getLatitude()));
+        geoLocation.setLong$(String.valueOf(locationRequestPayload.getLongitude()));
+        geoLocation.setRequestedAddress(locationRequestPayload.getRequestedAddress());
+        geoLocation.setSubmittedAddress(locationRequestPayload.getRequestedAddress());
+        geoLocation.setFullAddress(locationRequestPayload.getFullAddress());
+        geoLocation.setDatabcLat("NA");
+        geoLocation.setDatabcLong("NA");
+        geoLocation.setDatabcScore("NA");
+        return geoLocation;
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(VI_PATH)
-    public Response publishViEvent(@HeaderParam("ride-api-key") String apiKey, viEvent viEventObj) {
+    public Response publishViEvent(@HeaderParam("ride-api-key") String apiKey, viRequestPayload viRequestPayload) {
         if(checkAuthKey(apiKey)){
             String apiPath = DF_V_2_EVENTS + VI_PATH;
-            logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", viEventObj.getViPayload());
-            logger.info("{}",viEventObj.getTypeofevent());
+            logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", viRequestPayload);
+            logger.info("{}",viRequestPayload.getTypeofevent());
 
-            viPayloadRecord payloadData = viEventObj.getViPayload().get(0);
             Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
-
             try {
-                saveEventToMainStaging(viEventObj, uid, VI_EVENT, apiPath);
+                viPayloadRecord payloadData = viRequestPayload.getViPayload();
+                viEvent viEvent = new viEvent(
+                        viRequestPayload.getTypeofevent(),
+                        Collections.singletonList(payloadData)
+                );
+                geolocationRecord geoLocation = getViGeolocationRecord(viRequestPayload);
 
+                saveEventToMainStaging(viEvent, uid, VI_EVENT, apiPath);
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterViEvent.send(Record.of(uid, payloadData)).await().atMost(Duration.ofSeconds(5));
 
+                sendGeolocationEvent(geoLocation, uid, apiPath);
+
                 return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
             } catch (Exception e) {
-                return handleException(e, apiPath, viEventObj.toString(), VI_EVENT, uid);
+                return handleException(e, apiPath, viRequestPayload.toString(), VI_EVENT, uid);
             }
         }
         return Response.serverError().status(401).entity("Auth Error").build();
+    }
+
+    private geolocationRecord getViGeolocationRecord(viRequestPayload viRequestPayload) {
+        if (viRequestPayload == null || viRequestPayload.getViPayload() == null || viRequestPayload.getLocationRequestPayload() == null) {
+            return null;
+        }
+
+        geolocationRecord geoLocation = new geolocationRecord();
+        geoLocation.setBusinessProgram("DF");
+        geoLocation.setBusinessType(viRequestPayload.getTypeofevent());
+        geoLocation.setBusinessId(String.valueOf(viRequestPayload.getViPayload().getViNumber()));
+        locationRequestPayload locationRequestPayload = viRequestPayload.getLocationRequestPayload();
+        geoLocation.setLat(String.valueOf(locationRequestPayload.getLatitude()));
+        geoLocation.setLong$(String.valueOf(locationRequestPayload.getLongitude()));
+        geoLocation.setRequestedAddress(locationRequestPayload.getRequestedAddress());
+        geoLocation.setSubmittedAddress(locationRequestPayload.getRequestedAddress());
+        geoLocation.setFullAddress(locationRequestPayload.getFullAddress());
+        geoLocation.setDatabcLat("NA");
+        geoLocation.setDatabcLong("NA");
+        geoLocation.setDatabcScore("NA");
+        return geoLocation;
     }
 
     private Response handleException(Exception e, String apiPath, String eventObj, String eventType, Long uid) {
