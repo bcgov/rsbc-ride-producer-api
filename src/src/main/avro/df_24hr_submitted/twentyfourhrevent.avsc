@@ -18,6 +18,11 @@
           "name": "twentyFourHoursPayloadRecord",
           "fields": [
             {
+              "name": "eventID",
+              "doc": "",
+              "type": "long"
+            },
+            {
               "name": "eventVersion",
               "doc": "",
               "type": "float"

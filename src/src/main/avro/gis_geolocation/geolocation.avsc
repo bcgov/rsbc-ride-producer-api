@@ -1,0 +1,142 @@
+{
+  "name": "gisGeolocationEvent",
+  "type": "record",
+  "namespace": "bcgov.rsbc.ride.kafka.models",
+  "fields": [
+    {
+      "name": "typeofevent",
+      "doc": "",
+      "type": "string"
+    },
+    {
+      "name": "geolocationPayload",
+      "doc": "",
+      "type": {
+        "name": "geolocationRecord",
+        "type": "record",
+        "namespace": "bcgov.rsbc.ride.kafka.models",
+        "fields": [
+          {
+            "name": "business_program",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "business_type",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "business_id",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "long",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "lat",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "precision",
+            "doc": "",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "requested_address",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "submitted_address",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "full_address",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "databc_long",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "databc_lat",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "databc_precision",
+            "doc": "",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "databc_score",
+            "doc": "",
+            "type": "string"
+          },
+          {
+            "name": "alternate_source",
+            "doc": "",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "alternate_long",
+            "doc": "",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "alternate_lat",
+            "doc": "",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "alternate_score",
+            "doc": "",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "alternate_precision",
+            "doc": "",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "faults",
+            "doc": "",
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
