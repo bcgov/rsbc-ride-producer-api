@@ -105,8 +105,11 @@ public class dfV2Producer {
     }
 
     private static geolocationRecord getTwelveHourGeolocationRecord(twelveHoursRequestPayload payloadData) {
-        if (payloadData == null || payloadData.getTwelveHoursPayload() == null || payloadData.getLocationRequestPayload() == null) {
-            return null;
+        if (payloadData.getLocationRequestPayload() == null) {
+            return emptyGeolocationRecord(
+                    payloadData.getTypeofevent(),
+                    String.valueOf(payloadData.getTwelveHoursPayload().getTwelveHourNumber()),
+                    payloadData.getTwelveHoursPayload().getAddressOfOffence() +", " + payloadData.getTwelveHoursPayload().getOffenceCity());
         }
 
         geolocationRecord geoLocation = new geolocationRecord();
@@ -119,6 +122,22 @@ public class dfV2Producer {
         geoLocation.setRequestedAddress(locationRequestPayload.getRequestedAddress());
         geoLocation.setSubmittedAddress(locationRequestPayload.getRequestedAddress());
         geoLocation.setFullAddress(locationRequestPayload.getFullAddress());
+        geoLocation.setDatabcLat("NA");
+        geoLocation.setDatabcLong("NA");
+        geoLocation.setDatabcScore("NA");
+        return geoLocation;
+    }
+
+    private static geolocationRecord emptyGeolocationRecord(String eventType, String businessId, String address) {
+        geolocationRecord geoLocation = new geolocationRecord();
+        geoLocation.setBusinessProgram("DF");
+        geoLocation.setBusinessType(eventType);
+        geoLocation.setBusinessId(businessId);
+        geoLocation.setLat("");
+        geoLocation.setLong$("");
+        geoLocation.setRequestedAddress(address);
+        geoLocation.setSubmittedAddress(address);
+        geoLocation.setFullAddress("NA");
         geoLocation.setDatabcLat("NA");
         geoLocation.setDatabcLong("NA");
         geoLocation.setDatabcScore("NA");
@@ -159,8 +178,11 @@ public class dfV2Producer {
     }
 
     private static geolocationRecord getTwentyFourHourGeolocationRecord(twentyFourHoursRequestPayload twentyFourHoursPayload) {
-        if (twentyFourHoursPayload == null || twentyFourHoursPayload.getTwentyFourHoursPayload() == null || twentyFourHoursPayload.getLocationRequestPayload() == null) {
-            return null;
+        if (twentyFourHoursPayload.getLocationRequestPayload() == null) {
+            return emptyGeolocationRecord(
+                    twentyFourHoursPayload.getTypeofevent(),
+                    String.valueOf(twentyFourHoursPayload.getTwentyFourHoursPayload().getTwentyFourHrNo()),
+                    twentyFourHoursPayload.getTwentyFourHoursPayload().getAddressOfOffence() +", " + twentyFourHoursPayload.getTwentyFourHoursPayload().getOffenceCity());
         }
 
         geolocationRecord geoLocation = new geolocationRecord();
@@ -213,8 +235,11 @@ public class dfV2Producer {
     }
 
     private geolocationRecord getViGeolocationRecord(viRequestPayload viRequestPayload) {
-        if (viRequestPayload == null || viRequestPayload.getViPayload() == null || viRequestPayload.getLocationRequestPayload() == null) {
-            return null;
+        if (viRequestPayload.getLocationRequestPayload() == null) {
+            return emptyGeolocationRecord(
+                    viRequestPayload.getTypeofevent(),
+                    String.valueOf(viRequestPayload.getViPayload().getViNumber()),
+                    viRequestPayload.getViPayload().getAddressOfOffence() +", " + viRequestPayload.getViPayload().getOffenceCity());
         }
 
         geolocationRecord geoLocation = new geolocationRecord();
