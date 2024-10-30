@@ -188,7 +188,7 @@
               "type": ["null","string"]
             },
             {
-              "name": "isIRP",
+              "name": "isIrp",
               "doc": "",
               "type": "boolean"
             },
