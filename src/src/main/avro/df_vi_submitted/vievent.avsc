@@ -18,6 +18,11 @@
           "name": "viPayloadRecord",
           "fields": [
             {
+              "name": "eventID",
+              "doc": "",
+              "type": "long"
+            },
+            {
               "name": "eventVersion",
               "doc": "",
               "type": "float"
@@ -183,7 +188,7 @@
               "type": ["null","string"]
             },
             {
-              "name": "isIRP",
+              "name": "isIrp",
               "doc": "",
               "type": "boolean"
             },
@@ -279,7 +284,6 @@
             }
           ]
         }
-
       }
     }
   ]
