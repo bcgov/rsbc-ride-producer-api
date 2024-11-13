@@ -18,6 +18,11 @@
           "name": "twelveHoursPayloadRecord",
           "fields": [
             {
+              "name": "eventID",
+              "doc": "",
+              "type": "long"
+            },
+            {
               "name": "eventVersion",
               "doc": "",
               "type": "float"
@@ -174,7 +179,6 @@
             }
           ]
         }
-
       }
     }
   ]
