@@ -22,6 +22,9 @@ dependencies {
     implementation 'io.apicurio:apicurio-registry-utils-serde:1.3.2.Final'
     implementation 'io.quarkus:quarkus-mongodb-panache:2.14.0.Final'
     implementation("io.quarkus:quarkus-rest-jackson")
+    
+    // to support Prometheus istrumentation
+    implementation 'io.quarkus:quarkus-micrometer-registry-prometheus'
 
 //    To support Confluent registry schema formats
     implementation 'io.confluent:kafka-avro-serializer:7.0.1'
