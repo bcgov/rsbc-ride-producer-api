@@ -50,6 +50,10 @@ jobs:
         with:
           java-version: 17
           distribution: "temurin"
+      - name: Install OpenShift CLI tools
+        uses: redhat-actions/openshift-tools-installer@v1
+        with:
+          oc: "4.16"
       - name: Authenticate and set context for dev get cluster ca
         uses: redhat-actions/oc-login@v1.2
         with:
@@ -84,6 +88,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install OpenShift CLI tools
+        uses: redhat-actions/openshift-tools-installer@v1
+        with:
+          oc: "4.16"
       - name: Authenticate and set context for prod get cluster ca
         uses: redhat-actions/oc-login@v1.2
         with:
