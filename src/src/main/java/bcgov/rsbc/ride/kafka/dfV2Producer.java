@@ -1,6 +1,7 @@
 package bcgov.rsbc.ride.kafka;
 
 import bcgov.rsbc.ride.kafka.models.*;
+import bcgov.rsbc.ride.kafka.Commons;
 import bcgov.rsbc.ride.kafka.services.ReconService;
 import io.quarkus.mongodb.panache.PanacheQuery;
 import io.smallrye.reactive.messaging.MutinyEmitter;
@@ -19,6 +20,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Collections;
+
+
 
 @Path("/dfV2events")
 public class dfV2Producer {
@@ -66,7 +69,7 @@ public class dfV2Producer {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(TWELVE_HR_PATH)
     public Response publishTwelveHourEvent(@HeaderParam("ride-api-key") String apiKey, twelveHoursRequestPayload twelveHoursRequestPayload) {
-        if(checkAuthKey(apiKey)){
+        if(Commons.checkAuthKey(apiKey)){
             String apiPath = DF_V_2_EVENTS + TWELVE_HR_PATH;
             logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", twelveHoursRequestPayload);
             logger.info("{}",twelveHoursRequestPayload.getTypeofevent());
@@ -85,7 +88,8 @@ public class dfV2Producer {
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterTwelveHourEvent.send(Record.of(uid, payloadData)).await().atMost(Duration.ofSeconds(5));
 
-                sendGeolocationEvent(geoLocation, uid, apiPath);
+                Commons.sendGeolocationEvent(geoLocation, uid, DF_V_2, apiPath, reconApiHost, emitterGeolocationEvent);
+                
 
                 return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
             } catch (Exception e) {
@@ -95,14 +99,7 @@ public class dfV2Producer {
         return Response.serverError().status(401).entity("Auth Error").build();
     }
 
-    private void sendGeolocationEvent(geolocationRecord geoLocation, Long uid, String apiPath) {
-        if (geoLocation != null) {
-            gisGeolocationEvent gisGeolocationEvent = new gisGeolocationEvent(GIS_GEOLOCATION, geoLocation);
-            saveEventToMainStaging(gisGeolocationEvent, uid, GIS_GEOLOCATION, apiPath);
-            logger.info("[RIDE]: Kafka geolocation event UID: {}", uid);
-            emitterGeolocationEvent.send(Record.of(uid, geoLocation)).await().atMost(Duration.ofSeconds(5));
-        }
-    }
+   
 
     private static geolocationRecord getTwelveHourGeolocationRecord(twelveHoursRequestPayload payloadData) {
         if (payloadData.getLocationRequestPayload() == null) {
@@ -149,7 +146,7 @@ public class dfV2Producer {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(TWENTY_FOUR_HR_PATH)
     public Response publishTwentyFourHourEvent(@HeaderParam("ride-api-key") String apiKey, twentyFourHoursRequestPayload twentyFourHoursPayload) {
-        if(checkAuthKey(apiKey)){
+        if(Commons.checkAuthKey(apiKey)){
             String apiPath = DF_V_2_EVENTS + TWENTY_FOUR_HR_PATH;
             logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", twentyFourHoursPayload);
             logger.info("{}",twentyFourHoursPayload.getTypeofevent());
@@ -167,7 +164,8 @@ public class dfV2Producer {
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterTwentyFourHourEvent.send(Record.of(uid, payloadData)).await().atMost(Duration.ofSeconds(5));
 
-                sendGeolocationEvent(geoLocation, uid, apiPath);
+                Commons.sendGeolocationEvent(geoLocation, uid, DF_V_2, apiPath, reconApiHost, emitterGeolocationEvent);
+                
 
                 return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
             } catch (Exception e) {
@@ -206,7 +204,7 @@ public class dfV2Producer {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(VI_PATH)
     public Response publishViEvent(@HeaderParam("ride-api-key") String apiKey, viRequestPayload viRequestPayload) {
-        if(checkAuthKey(apiKey)){
+        if(Commons.checkAuthKey(apiKey)){
             String apiPath = DF_V_2_EVENTS + VI_PATH;
             logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", viRequestPayload);
             logger.info("{}",viRequestPayload.getTypeofevent());
@@ -224,7 +222,8 @@ public class dfV2Producer {
                 logger.info("[RIDE]: Kafka event UID: {}", uid);
                 emitterViEvent.send(Record.of(uid, payloadData)).await().atMost(Duration.ofSeconds(5));
 
-                sendGeolocationEvent(geoLocation, uid, apiPath);
+                Commons.sendGeolocationEvent(geoLocation, uid, DF_V_2, apiPath, reconApiHost, emitterGeolocationEvent);
+                
 
                 return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
             } catch (Exception e) {
@@ -277,12 +276,5 @@ public class dfV2Producer {
         }
     }
 
-    private boolean checkAuthKey(String apiKey) {
-        if (apiKey == null) {
-            return false;
-        }
-
-        PanacheQuery<apiKeys> queryKeys = apiKeys.find("apikeyval", apiKey);
-        return queryKeys.count() > 0;
-    }
+ 
 }
