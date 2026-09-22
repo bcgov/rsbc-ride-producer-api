@@ -75,6 +75,26 @@
     "mre_agency_text": {
       "type": "string"
     },
+        
+      "person_residence_country_cd": {
+        "type": "string"
+      },
+      "person_residence_country_nm": {
+        "type": "string"
+      },
+      "drivers_licence_country_cd": {
+        "type": "string"
+      },
+      "drivers_licence_country_nm": {
+        "type": "string"
+      },
+      "drivers_licence_class_cd": {
+        "type": "string"
+      },
+      "drivers_licence_class_txt": {
+        "type": "string"
+      },
+
     "enforcement_jurisdiction_code": {
       "type": "string"
     },
