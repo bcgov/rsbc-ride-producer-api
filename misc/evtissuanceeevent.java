@@ -17,9 +17,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "submit_date",
         "sent_time",
         "drivers_licence_province_code",
+        "drivers_licence_country_cd",
+        "drivers_licence_country_nm",
+        "drivers_licence_class_cd",
+        "drivers_licence_class_txt",
         "person_gender_code",
         "person_residence_city_name",
         "person_residence_province_code",
+        "person_residence_country_cd",
+        "person_residence_country_nm",
         "young_person_yn",
         "offender_type_code",
         "violation_date",
@@ -55,80 +61,136 @@ public class evtissuanceeevent {
 
     @JsonProperty("event_id")
     private String eventId;
+
     @JsonProperty("ticket_number")
     private String ticketNumber;
+
     @JsonProperty("submit_date")
     private String submitDate;
+
     @JsonProperty("sent_time")
     private String sentTime;
+
     @JsonProperty("drivers_licence_province_code")
     private String driversLicenceProvinceCode;
+
+    @JsonProperty("drivers_licence_country_cd")
+    private String driversLicenceCountryCd;
+
+    @JsonProperty("drivers_licence_country_nm")
+    private String driversLicenceCountryNm;
+
+    @JsonProperty("drivers_licence_class_cd")
+    private String driversLicenceClassCd;
+
+    @JsonProperty("drivers_licence_class_txt")
+    private String driversLicenceClassTxt;
+
     @JsonProperty("person_gender_code")
     private String personGenderCode;
+
     @JsonProperty("person_residence_city_name")
     private String personResidenceCityName;
+
     @JsonProperty("person_residence_province_code")
     private String personResidenceProvinceCode;
+
+    @JsonProperty("person_residence_country_cd")
+    private String personResidenceCountryCd;
+
+    @JsonProperty("person_residence_country_nm")
+    private String personResidenceCountryNm;
+
     @JsonProperty("young_person_yn")
     private String youngPersonYn;
+
     @JsonProperty("offender_type_code")
     private String offenderTypeCode;
+
     @JsonProperty("violation_date")
     private String violationDate;
+
     @JsonProperty("violation_time")
     private String violationTime;
+
     @JsonProperty("violation_highway_desc")
     private String violationHighwayDesc;
+
     @JsonProperty("violation_city_code")
     private String violationCityCode;
+
     @JsonProperty("violation_city_name")
     private String violationCityName;
+
     @JsonProperty("vehicle_province_code")
     private String vehicleProvinceCode;
+
     @JsonProperty("vehicle_nsj_puj_cd")
     private String vehicleNsjPujCd;
+
     @JsonProperty("vehicle_make_code")
     private String vehicleMakeCode;
+
     @JsonProperty("vehicle_type_code")
     private String vehicleTypeCode;
+
     @JsonProperty("vehicle_year")
     private String vehicleYear;
+
     @JsonProperty("accident_yn")
     private String accidentYn;
+
     @JsonProperty("dispute_address_text")
     private String disputeAddressText;
+
     @JsonProperty("court_location_code")
     private String courtLocationCode;
+
     @JsonProperty("mre_agency_text")
     private String mreAgencyText;
+
     @JsonProperty("enforcement_jurisdiction_code")
     private String enforcementJurisdictionCode;
+
     @JsonProperty("certificate_of_service_date")
     private String certificateOfServiceDate;
+
     @JsonProperty("certificate_of_service_number")
     private String certificateOfServiceNumber;
+
     @JsonProperty("e_violation_form_number")
     private String eViolationFormNumber;
+
     @JsonProperty("eviolationFormNumber")
     private String eviolationFormNumber;
+
     @JsonProperty("enforcement_jurisdiction_name")
     private String enforcementJurisdictionName;
+
     @JsonProperty("mre_minor_version_text")
     private String mreMinorVersionText;
+
     @JsonProperty("count_quantity")
     private Integer countQuantity;
+
     @JsonProperty("enforcement_officer_number")
     private String enforcementOfficerNumber;
+
     @JsonProperty("enforcement_officer_name")
     private String enforcementOfficerName;
+
     @JsonProperty("sent_date")
     private String sentDate;
+
     @JsonProperty("enforcement_org_unit_cd")
     private String enforcementOrgUnitCd;
+
     @JsonProperty("enforcement_org_unit_cd_txt")
     private String enforcementOrgUnitCdTxt;
+
     @JsonProperty("event")
     private Event event;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -182,6 +244,46 @@ public class evtissuanceeevent {
         this.driversLicenceProvinceCode = driversLicenceProvinceCode;
     }
 
+    @JsonProperty("drivers_licence_country_cd")
+    public String getDriversLicenceCountryCd() {
+        return driversLicenceCountryCd;
+    }
+
+    @JsonProperty("drivers_licence_country_cd")
+    public void setDriversLicenceCountryCd(String driversLicenceCountryCd) {
+        this.driversLicenceCountryCd = driversLicenceCountryCd;
+    }
+
+    @JsonProperty("drivers_licence_country_nm")
+    public String getDriversLicenceCountryNm() {
+        return driversLicenceCountryNm;
+    }
+
+    @JsonProperty("drivers_licence_country_nm")
+    public void setDriversLicenceCountryNm(String driversLicenceCountryNm) {
+        this.driversLicenceCountryNm = driversLicenceCountryNm;
+    }
+
+    @JsonProperty("drivers_licence_class_cd")
+    public String getDriversLicenceClassCd() {
+        return driversLicenceClassCd;
+    }
+
+    @JsonProperty("drivers_licence_class_cd")
+    public void setDriversLicenceClassCd(String driversLicenceClassCd) {
+        this.driversLicenceClassCd = driversLicenceClassCd;
+    }
+
+    @JsonProperty("drivers_licence_class_txt")
+    public String getDriversLicenceClassTxt() {
+        return driversLicenceClassTxt;
+    }
+
+    @JsonProperty("drivers_licence_class_txt")
+    public void setDriversLicenceClassTxt(String driversLicenceClassTxt) {
+        this.driversLicenceClassTxt = driversLicenceClassTxt;
+    }
+
     @JsonProperty("person_gender_code")
     public String getPersonGenderCode() {
         return personGenderCode;
@@ -210,6 +312,26 @@ public class evtissuanceeevent {
     @JsonProperty("person_residence_province_code")
     public void setPersonResidenceProvinceCode(String personResidenceProvinceCode) {
         this.personResidenceProvinceCode = personResidenceProvinceCode;
+    }
+
+    @JsonProperty("person_residence_country_cd")
+    public String getPersonResidenceCountryCd() {
+        return personResidenceCountryCd;
+    }
+
+    @JsonProperty("person_residence_country_cd")
+    public void setPersonResidenceCountryCd(String personResidenceCountryCd) {
+        this.personResidenceCountryCd = personResidenceCountryCd;
+    }
+
+    @JsonProperty("person_residence_country_nm")
+    public String getPersonResidenceCountryNm() {
+        return personResidenceCountryNm;
+    }
+
+    @JsonProperty("person_residence_country_nm")
+    public void setPersonResidenceCountryNm(String personResidenceCountryNm) {
+        this.personResidenceCountryNm = personResidenceCountryNm;
     }
 
     @JsonProperty("young_person_yn")
@@ -547,6 +669,22 @@ public class evtissuanceeevent {
         sb.append('=');
         sb.append(((this.driversLicenceProvinceCode == null) ? "<null>" : this.driversLicenceProvinceCode));
         sb.append(',');
+        sb.append("driversLicenceCountryCd");
+        sb.append('=');
+        sb.append(((this.driversLicenceCountryCd == null) ? "<null>" : this.driversLicenceCountryCd));
+        sb.append(',');
+        sb.append("driversLicenceCountryNm");
+        sb.append('=');
+        sb.append(((this.driversLicenceCountryNm == null) ? "<null>" : this.driversLicenceCountryNm));
+        sb.append(',');
+        sb.append("driversLicenceClassCd");
+        sb.append('=');
+        sb.append(((this.driversLicenceClassCd == null) ? "<null>" : this.driversLicenceClassCd));
+        sb.append(',');
+        sb.append("driversLicenceClassTxt");
+        sb.append('=');
+        sb.append(((this.driversLicenceClassTxt == null) ? "<null>" : this.driversLicenceClassTxt));
+        sb.append(',');
         sb.append("personGenderCode");
         sb.append('=');
         sb.append(((this.personGenderCode == null) ? "<null>" : this.personGenderCode));
@@ -558,6 +696,14 @@ public class evtissuanceeevent {
         sb.append("personResidenceProvinceCode");
         sb.append('=');
         sb.append(((this.personResidenceProvinceCode == null) ? "<null>" : this.personResidenceProvinceCode));
+        sb.append(',');
+        sb.append("personResidenceCountryCd");
+        sb.append('=');
+        sb.append(((this.personResidenceCountryCd == null) ? "<null>" : this.personResidenceCountryCd));
+        sb.append(',');
+        sb.append("personResidenceCountryNm");
+        sb.append('=');
+        sb.append(((this.personResidenceCountryNm == null) ? "<null>" : this.personResidenceCountryNm));
         sb.append(',');
         sb.append("youngPersonYn");
         sb.append('=');
@@ -690,5 +836,4 @@ public class evtissuanceeevent {
         }
         return sb.toString();
     }
-
 }
