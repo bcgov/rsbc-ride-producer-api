@@ -1,3 +1,4 @@
+
 package bcgov.rsbc.ride.kafka.models;
 
 import java.util.LinkedHashMap;
@@ -17,9 +18,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "submit_date",
         "sent_time",
         "drivers_licence_province_code",
+        "drivers_licence_country_cd",
+        "drivers_licence_country_nm",
+        "drivers_licence_class_cd",
+        "drivers_licence_class_txt",
         "person_gender_code",
         "person_residence_city_name",
         "person_residence_province_code",
+        "person_residence_country_cd",
+        "person_residence_country_nm",
         "young_person_yn",
         "offender_type_code",
         "violation_date",
@@ -66,12 +73,38 @@ public class evtissuanceeevent {
     private String sentTime;
     @JsonProperty("drivers_licence_province_code")
     private String driversLicenceProvinceCode;
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_country_cd")
+    private String driversLicenceCountryCd;
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_country_nm")
+    private String driversLicenceCountryNm;
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_class_cd")
+    private String driversLicenceClassCd;
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_class_txt")
+    private String driversLicenceClassTxt;
+
     @JsonProperty("person_gender_code")
     private String personGenderCode;
     @JsonProperty("person_residence_city_name")
     private String personResidenceCityName;
     @JsonProperty("person_residence_province_code")
     private String personResidenceProvinceCode;
+
+    // NEW FIELD
+    @JsonProperty("person_residence_country_cd")
+    private String personResidenceCountryCd;
+
+    // NEW FIELD
+    @JsonProperty("person_residence_country_nm")
+    private String personResidenceCountryNm;
+
     @JsonProperty("young_person_yn")
     private String youngPersonYn;
     @JsonProperty("offender_type_code")
@@ -137,7 +170,6 @@ public class evtissuanceeevent {
     @JsonProperty("ticket_status_trans")
     private String ticketStatusTrans;
 
-
     @JsonProperty("event")
     private Event event;
     @JsonProperty("counts")
@@ -154,7 +186,6 @@ public class evtissuanceeevent {
     public void setEventId(String eventId) {
         this.eventId = eventId;
     }
-
 
     @JsonProperty("ticket_status")
     public String getTicketStatus() {
@@ -216,6 +247,54 @@ public class evtissuanceeevent {
         this.driversLicenceProvinceCode = driversLicenceProvinceCode;
     }
 
+    // NEW FIELD
+    @JsonProperty("drivers_licence_country_cd")
+    public String getDriversLicenceCountryCd() {
+        return driversLicenceCountryCd;
+    }
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_country_cd")
+    public void setDriversLicenceCountryCd(String driversLicenceCountryCd) {
+        this.driversLicenceCountryCd = driversLicenceCountryCd;
+    }
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_country_nm")
+    public String getDriversLicenceCountryNm() {
+        return driversLicenceCountryNm;
+    }
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_country_nm")
+    public void setDriversLicenceCountryNm(String driversLicenceCountryNm) {
+        this.driversLicenceCountryNm = driversLicenceCountryNm;
+    }
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_class_cd")
+    public String getDriversLicenceClassCd() {
+        return driversLicenceClassCd;
+    }
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_class_cd")
+    public void setDriversLicenceClassCd(String driversLicenceClassCd) {
+        this.driversLicenceClassCd = driversLicenceClassCd;
+    }
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_class_txt")
+    public String getDriversLicenceClassTxt() {
+        return driversLicenceClassTxt;
+    }
+
+    // NEW FIELD
+    @JsonProperty("drivers_licence_class_txt")
+    public void setDriversLicenceClassTxt(String driversLicenceClassTxt) {
+        this.driversLicenceClassTxt = driversLicenceClassTxt;
+    }
+
     @JsonProperty("person_gender_code")
     public String getPersonGenderCode() {
         return personGenderCode;
@@ -244,6 +323,30 @@ public class evtissuanceeevent {
     @JsonProperty("person_residence_province_code")
     public void setPersonResidenceProvinceCode(String personResidenceProvinceCode) {
         this.personResidenceProvinceCode = personResidenceProvinceCode;
+    }
+
+    // NEW FIELD
+    @JsonProperty("person_residence_country_cd")
+    public String getPersonResidenceCountryCd() {
+        return personResidenceCountryCd;
+    }
+
+    // NEW FIELD
+    @JsonProperty("person_residence_country_cd")
+    public void setPersonResidenceCountryCd(String personResidenceCountryCd) {
+        this.personResidenceCountryCd = personResidenceCountryCd;
+    }
+
+    // NEW FIELD
+    @JsonProperty("person_residence_country_nm")
+    public String getPersonResidenceCountryNm() {
+        return personResidenceCountryNm;
+    }
+
+    // NEW FIELD
+    @JsonProperty("person_residence_country_nm")
+    public void setPersonResidenceCountryNm(String personResidenceCountryNm) {
+        this.personResidenceCountryNm = personResidenceCountryNm;
     }
 
     @JsonProperty("young_person_yn")
@@ -591,6 +694,31 @@ public class evtissuanceeevent {
         sb.append('=');
         sb.append(((this.driversLicenceProvinceCode == null) ? "<null>" : this.driversLicenceProvinceCode));
         sb.append(',');
+
+        // NEW FIELD
+        sb.append("driversLicenceCountryCd");
+        sb.append('=');
+        sb.append(((this.driversLicenceCountryCd == null) ? "<null>" : this.driversLicenceCountryCd));
+        sb.append(',');
+
+        // NEW FIELD
+        sb.append("driversLicenceCountryNm");
+        sb.append('=');
+        sb.append(((this.driversLicenceCountryNm == null) ? "<null>" : this.driversLicenceCountryNm));
+        sb.append(',');
+
+        // NEW FIELD
+        sb.append("driversLicenceClassCd");
+        sb.append('=');
+        sb.append(((this.driversLicenceClassCd == null) ? "<null>" : this.driversLicenceClassCd));
+        sb.append(',');
+
+        // NEW FIELD
+        sb.append("driversLicenceClassTxt");
+        sb.append('=');
+        sb.append(((this.driversLicenceClassTxt == null) ? "<null>" : this.driversLicenceClassTxt));
+        sb.append(',');
+
         sb.append("personGenderCode");
         sb.append('=');
         sb.append(((this.personGenderCode == null) ? "<null>" : this.personGenderCode));
@@ -603,6 +731,19 @@ public class evtissuanceeevent {
         sb.append('=');
         sb.append(((this.personResidenceProvinceCode == null) ? "<null>" : this.personResidenceProvinceCode));
         sb.append(',');
+
+        // NEW FIELD
+        sb.append("personResidenceCountryCd");
+        sb.append('=');
+        sb.append(((this.personResidenceCountryCd == null) ? "<null>" : this.personResidenceCountryCd));
+        sb.append(',');
+
+        // NEW FIELD
+        sb.append("personResidenceCountryNm");
+        sb.append('=');
+        sb.append(((this.personResidenceCountryNm == null) ? "<null>" : this.personResidenceCountryNm));
+        sb.append(',');
+
         sb.append("youngPersonYn");
         sb.append('=');
         sb.append(((this.youngPersonYn == null) ? "<null>" : this.youngPersonYn));
@@ -719,6 +860,7 @@ public class evtissuanceeevent {
         sb.append('=');
         sb.append(((this.enforcementOrgUnitCdTxt == null) ? "<null>" : this.enforcementOrgUnitCdTxt));
         sb.append(',');
+
         sb.append("event");
         sb.append('=');
         sb.append(((this.event == null) ? "<null>" : this.event));
