@@ -5,6 +5,8 @@ on:
     branches:   
       - 'devbranch'
 
+permissions: write-all
+
 
 jobs:
    run_unit_test:
