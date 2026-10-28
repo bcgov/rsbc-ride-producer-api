@@ -16,6 +16,9 @@ import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -30,11 +33,13 @@ public class dfV2Producer {
     private final static String TWELVE_HR_EVENT = "12hr_submitted";
     private final static String TWENTY_FOUR_HR_EVENT = "24hr_submitted";
     private final static String VI_EVENT = "vi_submitted";
+    private final static String IRP_EVENT = "irp_submitted";
     private final static String GIS_GEOLOCATION = "gis_geolocation";
     private static final String PRODUCER_API = "producer_api";
     public static final String TWENTY_FOUR_HR_PATH = "/24hrsubmitted";
     public static final String TWELVE_HR_PATH = "/12hrsubmitted";
     public static final String VI_PATH = "/visubmitted";
+    public static final String IRP_PATH = "/irpsubmitted";
     private final static Logger logger = LoggerFactory.getLogger(dfV2Producer.class);
 
     @Inject
@@ -48,6 +53,14 @@ public class dfV2Producer {
     @Inject
     @Channel("outgoing-vievent")
     MutinyEmitter<Record<Long, viPayloadRecord>> emitterViEvent;
+
+
+    
+    @Inject
+    @Channel("outgoing-irpevent")
+    MutinyEmitter<Record<Long, irpPayloadRecord>> emitterIrpEvent;
+
+
 
     @Inject
     @Channel("outgoing-gis-geolocation")
@@ -233,6 +246,42 @@ public class dfV2Producer {
         return Response.serverError().status(401).entity("Auth Error").build();
     }
 
+
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path(IRP_PATH)
+    public Response publishIrpEvent(@HeaderParam("ride-api-key") String apiKey, irpRequestPayload irpRequestPayload) {
+        if(Commons.checkAuthKey(apiKey)){
+            String apiPath = DF_V_2_EVENTS + IRP_PATH;
+            logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", irpRequestPayload);
+            logger.info("{}",irpRequestPayload.getTypeofevent());
+
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+            try {
+                irpPayloadRecord payloadData = irpRequestPayload.getIrpPayload();
+                irpEvent irpEvent = new irpEvent(
+                        irpRequestPayload.getTypeofevent(),
+                        Collections.singletonList(payloadData)
+                );
+                geolocationRecord geoLocation = getIrpGeolocationRecord(irpRequestPayload);
+
+                saveEventToMainStaging(irpEvent, uid, IRP_EVENT, apiPath);
+                logger.info("[RIDE]: Kafka event UID: {}", uid);
+                emitterIrpEvent.send(Record.of(uid, payloadData)).await().atMost(Duration.ofSeconds(5));
+
+                Commons.sendGeolocationEvent(geoLocation, uid, DF_V_2, apiPath, reconApiHost, emitterGeolocationEvent);
+                
+
+                return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
+            } catch (Exception e) {
+                return handleException(e, apiPath, irpRequestPayload.toString(), IRP_EVENT, uid);
+            }
+        }
+        return Response.serverError().status(401).entity("Auth Error").build();
+    }
+
     private geolocationRecord getViGeolocationRecord(viRequestPayload viRequestPayload) {
         if (viRequestPayload.getLocationRequestPayload() == null) {
             return emptyGeolocationRecord(
@@ -246,6 +295,30 @@ public class dfV2Producer {
         geoLocation.setBusinessType(viRequestPayload.getTypeofevent());
         geoLocation.setBusinessId(String.valueOf(viRequestPayload.getViPayload().getViNumber()));
         locationRequestPayload locationRequestPayload = viRequestPayload.getLocationRequestPayload();
+        geoLocation.setLat(String.valueOf(locationRequestPayload.getLatitude()));
+        geoLocation.setLong$(String.valueOf(locationRequestPayload.getLongitude()));
+        geoLocation.setRequestedAddress(locationRequestPayload.getRequestedAddress());
+        geoLocation.setSubmittedAddress(locationRequestPayload.getRequestedAddress());
+        geoLocation.setFullAddress(locationRequestPayload.getFullAddress());
+        geoLocation.setDatabcLat("NA");
+        geoLocation.setDatabcLong("NA");
+        geoLocation.setDatabcScore("NA");
+        return geoLocation;
+    }
+
+    private geolocationRecord getIrpGeolocationRecord(irpRequestPayload irpRequestPayload) {
+        if (irpRequestPayload.getLocationRequestPayload() == null) {
+            return emptyGeolocationRecord(
+                    irpRequestPayload.getTypeofevent(),
+                    String.valueOf(irpRequestPayload.getIrpPayload().getIrpNumber()),
+                    irpRequestPayload.getIrpPayload().getAddressOfOffence() +", " + irpRequestPayload.getIrpPayload().getOffenceCity());
+        }
+
+        geolocationRecord geoLocation = new geolocationRecord();
+        geoLocation.setBusinessProgram("DF");
+        geoLocation.setBusinessType(irpRequestPayload.getTypeofevent());
+        geoLocation.setBusinessId(String.valueOf(irpRequestPayload.getIrpPayload().getIrpNumber()));
+        locationRequestPayload locationRequestPayload = irpRequestPayload.getLocationRequestPayload();
         geoLocation.setLat(String.valueOf(locationRequestPayload.getLatitude()));
         geoLocation.setLong$(String.valueOf(locationRequestPayload.getLongitude()));
         geoLocation.setRequestedAddress(locationRequestPayload.getRequestedAddress());

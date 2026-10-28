@@ -1,0 +1,195 @@
+{
+  "name": "irpEvent",
+  "type": "record",
+  "namespace": "bcgov.rsbc.ride.kafka.models",
+  "fields": [
+    {
+      "name": "typeofevent",
+      "doc": "",
+      "type": "string"
+    },
+    {
+      "name": "irpPayload",
+      "doc": "",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "irpPayloadRecord",
+          "fields": [
+            {
+              "name": "eventID",
+              "doc": "",
+              "type": "long"
+            },
+            {
+              "name": "eventVersion",
+              "doc": "",
+               "type": "float"
+            },
+            {
+              "name": "eventDtm",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "eventType",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "irpNumber",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "viNumber",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "irpProhibitionType",
+              "doc": "",
+              "type": {
+                "type": "enum",
+                "name": "irpProhibitionTypeEnum",
+                "symbols": [
+                  "BACWARN3",
+                  "BACWARN7",
+                  "BACWARN30",
+                  "BACFAIL",
+                  "BACREFUSAL"
+                ]
+              }
+            },
+            {
+              "name": "prohibitionPeriodDays",
+              "doc": "",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null
+            },
+            {
+              "name": "driverGender",
+              "doc": "",
+              "type": [
+                "null",
+                {
+                  "type": "enum",
+                  "name": "driverGenderEnum",
+                  "symbols": [
+                    "M",
+                    "F",
+                    "X",
+                    "U"
+                  ]
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "driverDateOfBirth",
+              "doc": "",
+              "type": ["null","string"]
+              
+            },
+              {
+              "name": "dateOfDriving",
+              "doc": "",
+              "type": ["null","string"]
+            
+    
+            },
+            {
+              "name": "driverLicenceClass",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "timeOfDriving",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "agencyFileNumber",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "officerDisplayName",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "addressOfOffence",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "offenceCity",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "officerBadgeNumber",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "vjurCde",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "enforcementAgencyName",
+              "doc": "",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
