@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 
 
 
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -34,12 +33,14 @@ public class dfV2Producer {
     private final static String TWENTY_FOUR_HR_EVENT = "24hr_submitted";
     private final static String VI_EVENT = "vi_submitted";
     private final static String IRP_EVENT = "irp_submitted";
+    private final static String MV6020_EVENT = "mv6020_submitted";
     private final static String GIS_GEOLOCATION = "gis_geolocation";
     private static final String PRODUCER_API = "producer_api";
     public static final String TWENTY_FOUR_HR_PATH = "/24hrsubmitted";
     public static final String TWELVE_HR_PATH = "/12hrsubmitted";
     public static final String VI_PATH = "/visubmitted";
     public static final String IRP_PATH = "/irpsubmitted";
+    public static final String MV6020_PATH = "/mv6020submitted";
     private final static Logger logger = LoggerFactory.getLogger(dfV2Producer.class);
 
     @Inject
@@ -59,6 +60,11 @@ public class dfV2Producer {
     @Inject
     @Channel("outgoing-irpevent")
     MutinyEmitter<Record<Long, irpPayloadRecord>> emitterIrpEvent;
+
+    @Inject
+    @Channel("outgoing-mv6020event")
+    MutinyEmitter<Record<Long, mv6020PayloadRecord>> emitterMv6020Event;
+
 
 
 
@@ -111,6 +117,43 @@ public class dfV2Producer {
         }
         return Response.serverError().status(401).entity("Auth Error").build();
     }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path(MV6020_PATH)
+    public Response publishMv6020Event(@HeaderParam("ride-api-key") String apiKey, mv6020RequestPayload mv6020RequestPayload) {
+        if(Commons.checkAuthKey(apiKey)){
+            String apiPath = DF_V_2_EVENTS + MV6020_PATH;
+            logger.info("[RIDE]: Publish app accepted [payload: {}] to kafka.", mv6020RequestPayload);
+            logger.info("{}",mv6020RequestPayload.getTypeofevent());
+
+            Long uid = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+            try {
+                mv6020PayloadRecord payloadData = mv6020RequestPayload.getMv6020Payload();
+                mv6020Event mv6020Event = new mv6020Event(
+                        mv6020RequestPayload.getTypeofevent(),
+                        Collections.singletonList(payloadData)
+                );
+                geolocationRecord geoLocation = getMv6020GeolocationRecord(mv6020RequestPayload);
+
+                saveEventToMainStaging(mv6020Event, uid, MV6020_EVENT, apiPath);
+                logger.info("[RIDE]: Kafka event UID: {}", uid);
+                emitterMv6020Event.send(Record.of(uid, payloadData)).await().atMost(Duration.ofSeconds(5));
+
+                Commons.sendGeolocationEvent(geoLocation, uid, DF_V_2, apiPath, reconApiHost, emitterGeolocationEvent);
+                
+
+                return Response.ok().entity("{\"status\":\"sent to kafka\",\"event_id\":\""+uid+"\"}").build();
+            } catch (Exception e) {
+                return handleException(e, apiPath, mv6020RequestPayload.toString(), MV6020_EVENT, uid);
+            }
+        }
+        return Response.serverError().status(401).entity("Auth Error").build();
+    }
+
+
+
 
    
 
@@ -329,6 +372,32 @@ public class dfV2Producer {
         geoLocation.setDatabcScore("NA");
         return geoLocation;
     }
+
+    private geolocationRecord getMv6020GeolocationRecord(mv6020RequestPayload mv6020RequestPayload) {
+        if (mv6020RequestPayload.getLocationRequestPayload() == null) {
+            return emptyGeolocationRecord(
+                    mv6020RequestPayload.getTypeofevent(),
+                    String.valueOf(mv6020RequestPayload.getMv6020Payload().getCollisionCaseNumber()),
+                    mv6020RequestPayload.getMv6020Payload().getStreetOn() +"/ " + mv6020RequestPayload.getMv6020Payload().getStreetAt() +", " + mv6020RequestPayload.getMv6020Payload().getCityName());
+        }
+
+        geolocationRecord geoLocation = new geolocationRecord();
+        geoLocation.setBusinessProgram("DF");
+        geoLocation.setBusinessType(mv6020RequestPayload.getTypeofevent());
+        geoLocation.setBusinessId(String.valueOf(mv6020RequestPayload.getMv6020Payload().getCollisionCaseNumber()));
+        locationRequestPayload locationRequestPayload = mv6020RequestPayload.getLocationRequestPayload();
+        geoLocation.setLat(String.valueOf(locationRequestPayload.getLatitude()));
+        geoLocation.setLong$(String.valueOf(locationRequestPayload.getLongitude()));
+        geoLocation.setRequestedAddress(locationRequestPayload.getRequestedAddress());
+        geoLocation.setSubmittedAddress(locationRequestPayload.getRequestedAddress());
+        geoLocation.setFullAddress(locationRequestPayload.getFullAddress());
+        geoLocation.setDatabcLat("NA");
+        geoLocation.setDatabcLong("NA");
+        geoLocation.setDatabcScore("NA");
+        return geoLocation;
+    }
+
+   
 
     private Response handleException(Exception e, String apiPath, String eventObj, String eventType, Long uid) {
         logger.error("[RIDE]: Exception occurred while sending 12hr_event event, exception details: {}", e.toString() + "; " + e.getMessage());
