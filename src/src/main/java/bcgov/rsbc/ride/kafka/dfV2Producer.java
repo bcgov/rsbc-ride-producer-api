@@ -16,15 +16,7 @@ import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import avsc.bcgov.rsbc.ride.kafka.models.geolocationRecord;
-import avsc.bcgov.rsbc.ride.kafka.models.mv6020Event;
-import avsc.bcgov.rsbc.ride.kafka.models.mv6020PayloadRecord;
-import avsc.bcgov.rsbc.ride.kafka.models.twelveHoursEvent;
-import avsc.bcgov.rsbc.ride.kafka.models.twelveHoursPayloadRecord;
-import avsc.bcgov.rsbc.ride.kafka.models.twentyFourHoursEvent;
-import avsc.bcgov.rsbc.ride.kafka.models.twentyFourHoursPayloadRecord;
-import avsc.bcgov.rsbc.ride.kafka.models.viEvent;
-import avsc.bcgov.rsbc.ride.kafka.models.viPayloadRecord;
+
 
 import java.time.Duration;
 import java.time.LocalDateTime;
