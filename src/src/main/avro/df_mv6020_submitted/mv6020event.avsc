@@ -1,0 +1,142 @@
+
+{
+  "name": "mv6020Event",
+  "type": "record",
+  "namespace": "bcgov.rsbc.ride.kafka.models",
+  "fields": [
+    {
+      "name": "typeofevent",
+      "doc": "Event type. Expected value: mv6020_submitted.",
+      "type": "string"
+    },
+    {
+      "name": "mv6020Payload",
+      "doc": "MV6020 Police Traffic Accident Report submission details.",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "mv6020PayloadRecord",
+          "fields": [
+            {
+              "name": "eventID",
+              "doc": "Digital Forms submission ID.",
+              "type": "long"
+            },
+            {
+              "name": "eventVersion",
+              "doc": "Event version. Phase 1 value is 1.0.",
+              "type": "float"
+            },
+            {
+              "name": "eventDtm",
+              "doc": "MV6020 submission date and time in America/Vancouver local time. Format: YYYY-MM-DD HH:MM:SS.",
+              "type": "string"
+            },
+            {
+              "name": "eventType",
+              "doc": "Event type. Expected value: mv6020_submitted.",
+              "type": "string"
+            },
+            {
+              "name": "collisionCaseNumber",
+              "doc": "Collision case number. Business key of the MV6020 record.",
+              "type": "string"
+            },
+            {
+              "name": "policeFileNumber",
+              "doc": "Police file number.",
+              "type": "string"
+            },
+            {
+              "name": "dateOfCollision",
+              "doc": "Date of collision. Format: YYYY-MM-DD.",
+              "type": "string"
+            },
+            {
+              "name": "timeOfCollision",
+              "doc": "Time of collision in Pacific time. Format: HH:MM. Null when unknown.",
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            {
+              "name": "reportedDate",
+              "doc": "Date the collision was reported. Format: YYYY-MM-DD.",
+              "type": "string"
+            },
+            {
+              "name": "icbcSubmissionDate",
+              "doc": "Date and time the report was submitted to ICBC in America/Vancouver local time. Format: YYYY-MM-DD HH:MM:SS.",
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            {
+              "name": "collisionType",
+              "doc": "Collision type: 5 = Fatality, 3 = Personal injury, 2 = Property damage over $10K, 0 = Non-reportable.",
+              "type": "string"
+            },
+            {
+              "name": "vjurCde",
+              "doc": "Enforcement agency jurisdiction code. Numeric string. Null if agency is not found.",
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            {
+              "name": "enforcementAgencyName",
+              "doc": "Enforcement agency name.",
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            {
+              "name": "icbcPoliceAgencyCode",
+              "doc": "ICBC police agency code.",
+              "type": "string"
+            },
+            {
+              "name": "badgeNumber",
+              "doc": "Badge number of the submitting officer.",
+              "type": "string"
+            },
+            {
+              "name": "officerDisplayName",
+              "doc": "Display name of the submitting officer.",
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            {
+              "name": "cityName",
+              "doc": "City name, not city code.",
+              "type": "string"
+            },
+            {
+              "name": "streetOn",
+              "doc": "Street on which the collision occurred.",
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            {
+              "name": "streetAt",
+              "doc": "Cross street. Null when there is no cross street.",
+              "type": [
+                "null",
+                "string"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
