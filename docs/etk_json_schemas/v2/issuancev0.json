@@ -105,6 +105,26 @@
     "enforcement_officer_name": {
       "type": "string"
     },
+        
+    "person_residence_country_cd": {
+      "type": "string"
+    },
+    "person_residence_country_nm": {
+      "type": "string"
+    },
+    "drivers_licence_country_cd": {
+      "type": "string"
+    },
+    "drivers_licence_country_nm": {
+      "type": "string"
+    },
+    "drivers_licence_class_cd": {
+      "type": "string"
+    },
+    "drivers_licence_class_txt": {
+      "type": "string"
+    },
+
     "sent_date": {
       "type": "string"
     },
